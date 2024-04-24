@@ -1,5 +1,5 @@
 # Welcome to KasthaShop!!! 
-- KasthaShop your exclusive destination for discovering and acquiring handcrafted treasures from Kathmandu, Nepal - items you won't find anywhere else.
+- KasthaShop your exclusive destination for discovering and acquiring unique handcrafted treasures from Kathmandu, Nepal - items you won't find anywhere else.
 
 ## Sign Up
 - **As a** new user,
