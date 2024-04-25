@@ -17,7 +17,7 @@ function Navigation() {
         <input type="text" />
       </div>
       <div className ='add-product'>
-      {sessionUser && <NavLink to='product/new'>Add Product</NavLink>}
+      {sessionUser && <NavLink to='products/new'>Add Product</NavLink>}
       </div>
       <div className='right-profile-div'>
           <ProfileButton user = {sessionUser}/>
