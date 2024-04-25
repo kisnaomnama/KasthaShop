@@ -21,29 +21,43 @@
   .navigation {
     display: flex;
     justify-content: space-between;
-    align-items: center; 
+    align-items: flex-end;
     padding: 10px 20px;
     background-color: var(--brown-bonnet);
+    height: 40px;
   }
   
   .left-home-page-div {
-    flex: 1;
+    /* flex: 1; */
   }
   
   .mid-search-div {
-    flex: 2;
+ 
+  }
+
+  .mid-search-div input{
+    /* width: 100%; */
+  }
+  .add-product{
+
   }
   
+  .add-product a{
+    text-decoration: none;
+    color: var(--dark-slate);
+  }
+  
+  .add-product a:hover{
+
+  }
+
   .right-profile-div {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
+   
   }
   
   .left-home-page-div a {
     text-decoration: none;
     color: var(--primary-color);
-    font-size: 24px;
   }
   
   .left-home-page-div a:hover {
@@ -51,10 +65,7 @@
   }
   
   .mid-search-div input[type="text"] {
-    width: 100%;
-    padding: 5px;
     border: 1px solid var(--secondary-color); 
-    font-size: 16px;
   }
   
   
@@ -100,6 +111,8 @@
     text-decoration: none; 
     overflow: hidden;
   }
+
+
 
 /* --------------login ---------------*/
 

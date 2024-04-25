@@ -10,16 +10,16 @@ function Navigation() {
   return (
     <div className='navigation navigation-wrapper'>
       <div className='left-home-page-div'>
-        <NavLink to="/"><span><img className={'Kastha-logo'} src={KasthaImage} alt="Home Image" />KasthaShop</span></NavLink>
+        <NavLink to="/"><img className={'Kastha-logo'} src={KasthaImage} alt="Home Image" />KasthaShop</NavLink>
       </div>
 
       <div className='mid-search-div'>
         <input type="text" />
       </div>
-
+      <div className ='add-product'>
+      {sessionUser && <NavLink to='product/new'>Add Product</NavLink>}
+      </div>
       <div className='right-profile-div'>
-        {sessionUser && <NavLink to='product/new'
-          className={add-product}>Add Product</NavLink>}
           <ProfileButton user = {sessionUser}/>
       </div>
     </div>
