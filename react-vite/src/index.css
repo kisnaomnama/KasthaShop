@@ -1,1 +1,15 @@
-/* TODO: Add sitewide styles */
+:root {
+  --primary-color: #1d1e22; 
+  --secondary-color: #275e68;
+  --text-color: #333; 
+  --background-color: #966F33; 
+  --are-ya-yellow: #feda6a;
+  --silver-fox: #d4d4dc;
+  --deep-matte-grey: #393f4d;
+  --dark-slate: #0e0e2e;
+  --french-laundry-blue: #3a4660; 
+  --comfortably-tan: #c9af98; 
+  --peachy-kreme: #ed8a63; 
+  --brown-bonnet: #845007; 
+  --error-red: red;
+}

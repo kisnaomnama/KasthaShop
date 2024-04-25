@@ -1,74 +1,176 @@
-:root {
-  --primary-color: #1d1e22; /* Primary color */
-  --secondary-color: #275e68; /* Secondary color */
-  --text-color: #333; /* Text color */
-  --background-color: #966F33; /* Background color */
-  --are-ya-yellow: #feda6a;
-  --silver-fox: #d4d4dc;
-  --deep-matte-grey: #393f4d;
-  --dark-slate: #0e0e0f;
-  --french-laundry-blue: #3a4660; /* French Laundry Blue */
-  --comfortably-tan: #c9af98; /* Comfortably Tan */
-  --peachy-kreme: #ed8a63; /* Peachy Kreme */
-  --brown-bonnet: #845007; /* Brown Bonnet */
-}
+/* :root {
+    --primary-color: #1d1e22; 
+    --secondary-color: #275e68;
+    --text-color: #333; 
+    --background-color: #966F33; 
+    --are-ya-yellow: #feda6a;
+    --silver-fox: #d4d4dc;
+    --deep-matte-grey: #393f4d;
+    --dark-slate: #0e0e2e;
+    --french-laundry-blue: #3a4660; 
+    --comfortably-tan: #c9af98; 
+    --peachy-kreme: #ed8a63; 
+    --brown-bonnet: #845007; 
+    --error-red: red;
+  } */
+
+  .profile-dropdown {
+    position: absolute;
+  }
+  
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 10px 20px;
+    background-color: var(--brown-bonnet);
+  }
+  
+  .left-home-page-div {
+    flex: 1;
+  }
+  
+  .mid-search-div {
+    flex: 2;
+  }
+  
+  .right-profile-div {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .left-home-page-div a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 24px;
+  }
+  
+  .left-home-page-div a:hover {
+    color: var(--french-laundry-blue); 
+  }
+  
+  .mid-search-div input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid var(--secondary-color); 
+    font-size: 16px;
+  }
+  
+  
+  .right-profile-div button {
+    padding: 8px 12px;
+    background-color: var(--dark-slate); 
+    color: var(--silver-fox);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .right-profile-div button:hover {
+    background-color: var(--french-laundry-blue); 
+  }
+
+  .Kastha-logo {
+    width: 60px; 
+    height: 40px; 
+    margin-right: 5px; 
+  }
+  
+  .left-home-page-div span {
+    font-weight: bold; 
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    right: 22px;
+    width: auto;
+    padding: 10px;
+    top: 55px;
+    border-radius: 5px;
+    background-color: var(--dark-slate);
+    z-index: 1;
+    color: var(--silver-fox);
+    width: 80px;
+  }
+
+  .profile-dropdown li:hover{
+    color:var(--peachy-kreme);
+    cursor: pointer;
+    text-decoration: none; 
+    overflow: hidden;
+  }
+
+/* --------------login ---------------*/
 
 
-.profile-dropdown {
-  position: absolute;
-}
-
-.navigation {
+.form-container {
+  width: 360px;
+  padding: 20px;
+  border: 2px solid var(--brown-bonnet);
+  background-color: var(--silver-fox);
+  color: var(--dark-slate);
   display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.form-header {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline; 
   justify-content: space-between;
-  align-items: center; 
-  padding: 10px 20px;
-  background-color: var(--brown-bonnet);
 }
 
-.left-home-page-div {
-  flex: 1;
+.form-label input {
+  margin-left: 5px;
+  padding: 10px 5px 0px 5px;
+  width: 60%;
 }
 
-.mid-search-div {
-  flex: 2;
+.login .form-label input {
+  margin-left: 5px;
+  padding: 10px 5px 0px 5px;
+  width: 70%;
 }
 
-.right-profile-div {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
+
+.form-label input:focus {
+  outline: none;
+  border-color: var(--brown-bonnet);
 }
 
-.left-home-page-div a {
-  text-decoration: none;
-  color: var(--primary-color);
-  font-size: 24px;
-}
-
-.left-home-page-div a:hover {
-  color: var(--french-laundry-blue); /* Hover color */
-}
-
-/* Style for input */
-.mid-search-div input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid var(--secondary-color); /* Secondary color border */
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-/* Style for ProfileButton */
-.right-profile-div button {
-  padding: 8px 12px;
-  background-color: var(--dark-slate); 
-  color: #fff;
+.submit-button {
+  padding: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
+  background-color: var(--background-color);
+  color: var(--silver-fox);
   cursor: pointer;
 }
 
-.right-profile-div button:hover {
-  background-color: var(--french-laundry-blue); /* Background color on hover */
+.submit-button:hover {
+  background-color: var(--brown-bonnet);
 }
+
+.error-message {
+  color: var(--error-red);
+}
+
+.form-label,
+.error-div {
+  height: 25px;
+}
+
+/*------------Sign up---------*/
