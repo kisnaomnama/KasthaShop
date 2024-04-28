@@ -5,7 +5,6 @@ import HomePage from '../components/HomePage';
 import ProductForm from '../components/ProductForm';
 import Layout from './Layout';
 
-
 export const router = createBrowserRouter([
   {
     element: <Layout />,
