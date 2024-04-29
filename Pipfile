@@ -30,6 +30,14 @@ zipp = "==3.17.0"
 requests-oauthlib = "==1.3.1"
 requests = "==2.31.0"
 boto3 = "*"
+botocore = "==1.34.91"
+certifi = "==2024.2.2"
+charset-normalizer = "==3.3.2"
+idna = "==3.7"
+jmespath = "==1.0.1"
+oauthlib = "==3.2.2"
+s3transfer = "==0.10.1"
+urllib3 = "==1.26.18"
 
 [dev-packages]
 
