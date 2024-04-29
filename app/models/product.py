@@ -15,7 +15,6 @@ class Product(db.Model):
     price = db.Column(db.Numeric(10, 2) , nullable=False)
     category = db.Column(db.String(50), nullable=False) 
     description = db.Column(db.String, nullable=False)
-    remaining = db.Column(db.Integer, nullable=False)
     product_image = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
