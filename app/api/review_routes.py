@@ -5,6 +5,7 @@ from app.forms import ReviewForm
 
 review_routes = Blueprint('reviews', __name__)
 
+
 @review_routes.route('/<int:id>')
 @login_required
 def review(id):

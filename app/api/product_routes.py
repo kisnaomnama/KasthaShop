@@ -6,11 +6,13 @@ from .aws_helpers import upload_file_to_s3, get_unique_filename
 
 product_routes = Blueprint('products', __name__)
 
+
 @product_routes.route('/')
 def all_products():
     products = Product.query.all();
     """Returns a list of all products"""
     return {'Products': [product.to_dict() for product in products]}, 200
+
 
 
 @product_routes.route('/<int:id>')
@@ -23,6 +25,7 @@ def product_by_id(id):
            return {"message" : "Product couldn't be found"}, 404
       return product.to_dict(), 200
    
+
 
 @product_routes.route('/', methods=['POST'])
 @login_required
@@ -56,6 +59,7 @@ def create_product():
         return new_product.to_dict(), 201
     
     return form.errors, 400
+
 
 
 @product_routes.route('/<int:id>', methods=['PUT'])
@@ -97,7 +101,6 @@ def update_product(id):
 
 
 
-
 @product_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_product(id):
@@ -114,6 +117,7 @@ def delete_product(id):
     db.session.commit()
 
     return {"message": "Successfully deleted product"}, 200
+
 
 
 @product_routes.route('/<int:id>/reviews', methods=['POST'])

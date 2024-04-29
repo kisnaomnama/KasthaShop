@@ -1,13 +1,12 @@
-from app.models import db, environment, SCHEMA, Customer, Product
+from app.models import db, environment, SCHEMA, User, Product
 from sqlalchemy.sql import text
 
 
 def seed_products():
     location = 'https://my-kastha-shop-bucket.s3.us-east-2.amazonaws.com/kastaimages/'
     categories = Product.allowed_categories()
-    c = ["Thanka Paintings", "Budda Statues","Singings Bowls", "Prayer Flags", "Prayer Wheels", "Others" ]
+    # c = ["Thanka Paintings", "Budda Statues","Singings Bowls", "Prayer Flags", "Prayer Wheels", "Others" ]
     
-
     products = [
 
           {
