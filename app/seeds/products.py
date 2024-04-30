@@ -41,7 +41,7 @@ def seed_products():
             "price": 10.00,
             "category": categories[5],
             "description": "This Rudraksha is often addressed as Devguru, Guru of all Devas ,Very useful for Meditation also Wearing this Rudraksha type around your heart area is consid",
-            "product_image": location + "beed1.png"
+            "product_image": location + "beed2.png"
         },
 
          {
@@ -63,7 +63,7 @@ def seed_products():
         },
            {
             "seller_id": 1,
-            "name": "Genuine 10 Inch Gurka Service Issue Kukri/Khukuri Knife, Hand forged 10 Inch",
+            "name": "Gurka Service Issue Khukuri Knife, Hand forged 10 Inch",
             "price": 299,
             "category": categories[5],
             "description": "Current British Gurka Issue Khukuri: This Kukri is the replica of current British Service Issue and was used since 1995 till date. Featuring a genuine handmade traditional kukri that represents honor, dignity, courage and loyalty and carries religious values among the people in Nepal.",
@@ -122,7 +122,7 @@ def seed_products():
             "price": 199,
             "category": categories[1],
             "description": "This is a beautifully hand painted mandala thangka painting from Nepal. One of the auspicious symbol Conch is painted in the center of the mandala.",
-            "product_image": location + "thanpaint2.png"
+            "product_image": location + "thanpaint4.png"
         },
 
         {

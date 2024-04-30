@@ -1,0 +1,27 @@
+
+.category-div {
+    background-color: var(--brown-bonnet);;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.category-div ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-div ul li {
+    margin-bottom: 5px;
+    font-size: larger;
+}
+
+.category-div ul li a {
+    text-decoration: none;
+    color: var(--dark-slate);
+    transition: color 0.3s ease;
+}
+
+.category-div ul li a:hover {
+    color: var(--silver-fox);
+}

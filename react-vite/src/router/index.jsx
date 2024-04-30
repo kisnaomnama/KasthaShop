@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import HomePage from '../components/HomePage';
+import ProductDetail from '../components/ProductDetail';
 import ProductForm from '../components/ProductForm';
 import Layout from './Layout';
 
@@ -12,6 +13,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage/>,
+      },
+      {
+        path: "/products/:productId",
+        element: <ProductDetail/>,
       },
       {
         path: "/products/new",

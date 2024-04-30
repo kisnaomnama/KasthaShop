@@ -31,7 +31,7 @@ class Product(db.Model):
         return ["Thanka Paintings", "Budda Statues","Singings Bowls", "Prayer Flags", "Prayer Wheels", "Others" ]
  
     def to_dict(self):
-        reviews = [{**review.to_dict(), "customer": review.customer.to_dict() } for review in self.reviews]
+        reviews = [{**review.to_dict(), "customer": review.user.to_dict() } for review in self.reviews]
 
         return {
             "id": self.id,

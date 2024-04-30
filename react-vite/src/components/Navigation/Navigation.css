@@ -14,11 +14,71 @@
     --error-red: red;
   } */
 
-  .profile-dropdown {
-    position: absolute;
-  }
   
   .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--brown-bonnet);
+    color: var(--dark-slate);
+    transition: color 0.4s ease;
+    padding: 10px 20px 5px 20px;
+    font-size: larger;
+   
+  }
+
+  .Kastha-logo {
+    width: 60px; 
+    height: 40px;
+   
+    margin-right: 5px; 
+  }
+  
+  .home-page-div a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .search-div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-div input {
+    margin-right: 10px; /* Adjust as needed */
+  }
+  
+  .home-page-div,
+  .add-product a,
+  .profile-div,
+  .cart-icon {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .home-page-div :hover,
+  .add-product :hover,
+  .profile-div :hover,
+  .icon :hover{
+    color: var(--silver-fox);
+  }
+
+
+  .profile-div button {
+    background-color: var(--dark-slate); 
+    color: var(--silver-fox);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cart-icon {
+    font-size: 26px; /* Adjust the size as needed */
+  }
+  
+  /* .navigation {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -28,7 +88,7 @@
   }
   
   .left-home-page-div {
-    /* flex: 1; */
+   
   }
   
   .mid-search-div {
@@ -36,7 +96,7 @@
   }
 
   .mid-search-div input{
-    /* width: 100%; */
+    
   }
   .add-product{
 
@@ -66,31 +126,21 @@
   
   .mid-search-div input[type="text"] {
     border: 1px solid var(--secondary-color); 
+  } */
+  
+  .profile-dropdown {
+    position: absolute;
   }
+
   
-  
-  .right-profile-div button {
-    padding: 8px 12px;
-    background-color: var(--dark-slate); 
-    color: var(--silver-fox);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .right-profile-div button:hover {
+  .profile-div button:hover {
     background-color: var(--french-laundry-blue); 
   }
 
-  .Kastha-logo {
-    width: 60px; 
-    height: 40px; 
-    margin-right: 5px; 
-  }
   
-  .left-home-page-div span {
+  /* .left-home-page-div span {
     font-weight: bold; 
-  }
+  } */
 
   .profile-dropdown {
     position: absolute;

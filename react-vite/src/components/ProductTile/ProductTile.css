@@ -1,0 +1,42 @@
+.Product-tile-div {
+    background-color: var(--silver-fox);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.Product-tile-div .img-div {
+    width: 100%;
+    text-align: center;
+}
+
+.Product-tile-div .img-div img {
+    width: 100%;
+    height: 340px;
+    border-radius: 5px;
+}
+
+
+.Product-tile-div .product-info {
+    margin-top: 10px;
+}
+
+.Product-tile-div .product-info p {
+    margin: 5px 0;   
+}
+
+.Product-tile-div .product-info p:first-child {
+    font-weight: bold;
+}
+
+/* Remove text decoration from links inside product-info */
+.Product-tile-div .product-info a {
+    text-decoration: none;
+    color: inherit; /* Use the color inherited from the parent */
+}
+
+.Product-tile-div .product-info a:hover {
+    color: inherit; /* Use the color inherited from the parent */
+}
