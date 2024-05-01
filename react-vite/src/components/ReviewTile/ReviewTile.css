@@ -1,0 +1,28 @@
+/* ReviewTile.css */
+.Review-tile-div {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .review-header {
+    display: flex;
+    align-items: center;
+    text-align: center;
+   
+  }
+  
+  .review-header p {
+    margin-left: 10px;
+    border-bottom: 1px solid black;
+  }
+  
+  .review-detail p {
+  
+  }
+  
+  /* ReviewTile.css */
+.person-icon {
+    height: 40px;
+    width: 40px;
+  }
+  

@@ -26,7 +26,7 @@ def product_by_id(id):
       return product.to_dict(), 200
    
 
-@product_routes.route('/new', methods=['POST'])
+@product_routes.route('/', methods=['POST'])
 @login_required
 def create_product():
     """Create a new product"""
@@ -34,16 +34,24 @@ def create_product():
     print('In create form route ===========>')
     
     form = ProductForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
+    # form["csrf_token"].data = request.cookies["csrf_token"]
+    csrf_token = request.cookies.get("csrf_token", "")
+    form["csrf_token"].data = csrf_token
+
+    print("+++++++++", form.data)
+    for key, value in form.data.items():
+            print("product====>", key, "= ", value)
 
     if form.validate_on_submit():
 
-        for key, value in form.data.entries():
+        for key, value in form.data.items():
             print("product====>", key, "= ", value)
+
 
         image = form.data["product_image"]
         url = None
 
+        print("IMAGE...", image)
         if image:
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)

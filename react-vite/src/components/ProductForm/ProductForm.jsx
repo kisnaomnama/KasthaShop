@@ -18,6 +18,7 @@ function ProductForm() {
     const [product_image, setProduct_image] = useState()
     const [imageLoading, setImageLoading] = useState(false);
     const [error, setError] = useState({})
+    const [showImage, setShowImage] = useState()
     // const [product_image, setPreviewUrl] = useState(null);
 
     const currentUser = useSelector(state => state.session['user'])
@@ -31,14 +32,16 @@ function ProductForm() {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
+        setProduct_image(file);
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                setProduct_image(reader.result);
+                setShowImage(reader.result)
             };
             reader.readAsDataURL(file);
         }
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,7 +56,7 @@ function ProductForm() {
         formData.append('product_image', product_image)
 
         setImageLoading(false)
-        setError({})
+       
 
         // dispatch(createProductThunk(formData)).then(newProduct => {
         //     toast.success("Successfully uploaded song", {
@@ -61,8 +64,14 @@ function ProductForm() {
         //     })
         // })  
 
-       const newProduct =  dispatch(createProductThunk(formData))    
-        navigate(`/products/${newProduct.id}`)     
+       const newProduct = await dispatch(createProductThunk(formData))    
+       if(newProduct.errors){
+        setError(newProduct.errors)
+       }
+       else{
+           navigate(`/products/${newProduct.id}`)
+       }
+        // navigate(`/products/${newProduct.id}`)     
     }
 
     useEffect(() => {
@@ -96,7 +105,7 @@ function ProductForm() {
                     </label>
 
                     <div className="image-preview-div">
-                        {product_image && <img src={product_image} alt="Preview" />}
+                        {showImage && <img src={showImage} alt="Preview" />}
                     </div>
                     <div className="error-message" id="product_image-error">
                         {error.product_image && <p>{error.product_image}</p>}

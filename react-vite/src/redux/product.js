@@ -58,11 +58,11 @@ export const loadProductsThunk = () => async (dispatch) => {
 
 export const createProductThunk = (product) => async (dispatch) => {
 
-    // for (const [key, value] of product.entries()) {
-    //     console.log("product====>", key, "= ", value);
-    // }
+    for (const [key, value] of product.entries()) {
+        console.log("product====>", key, "= ", value);
+    }
 
-    const res = await fetch("/api/products/new", {
+    const res = await fetch("/api/products/", {
         method: "POST",
         body: product
     });
@@ -70,6 +70,10 @@ export const createProductThunk = (product) => async (dispatch) => {
         const data = await res.json();
         dispatch(createProduct(data));
         return data;
+    }
+    else{
+        const errors = await res.json();
+        return errors
     }
 };
 

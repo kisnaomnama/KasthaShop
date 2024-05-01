@@ -27,7 +27,7 @@ class Product(db.Model):
 
     
     @classmethod
-    def allowed_catagories(cls):
+    def allowed_categories(cls):
         return ["Thanka Paintings", "Budda Statues","Singings Bowls", "Prayer Flags", "Prayer Wheels", "Gifts etc" ]
  
     def to_dict(self):

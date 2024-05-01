@@ -7,8 +7,8 @@ from ..models import Product
 
 
 def check_name(form, field):
-    if len(field.data) < 4:
-        raise ValidationError("Name must be at least 4 characters")
+    if len(field.data) < 2:
+        raise ValidationError("Name must be at least 2 characters")
 
 
 def check_price(form, field):
@@ -20,13 +20,14 @@ def check_price(form, field):
 
 def check_category(form, field):
     categories = Product.allowed_categories()
+    # catagories = ["Thanka Paintings", "Budda Statues", "Singings Bowls", "Prayer Flags", "Prayer Wheels", "Gifts etc"]
     if field.data not in categories:
         raise ValidationError(f"Invalid category! Here is a list of allowed categories: {categories}")
 
 
 def check_description(form, field):
-    if len(field.data) < 50:
-        raise ValidationError("Description must be at least 50 characters")
+    if len(field.data) < 3:
+        raise ValidationError("Description must be at least 3 characters")
 
 
 
