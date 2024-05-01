@@ -37,7 +37,7 @@ function HomePage() {
                 <h1>Products</h1>
                 <div className="product-grid">
                     {products.map((product) =>
-                        <ProductTile product={product} />
+                        <ProductTile key={product.id} product={product} />
                     )}
                 </div>
             </div>

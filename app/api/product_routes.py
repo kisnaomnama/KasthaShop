@@ -26,15 +26,21 @@ def product_by_id(id):
       return product.to_dict(), 200
    
 
-
-@product_routes.route('/', methods=['POST'])
+@product_routes.route('/new', methods=['POST'])
 @login_required
 def create_product():
     """Create a new product"""
+
+    print('In create form route ===========>')
+    
     form = ProductForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
+
+        for key, value in form.data.entries():
+            print("product====>", key, "= ", value)
+
         image = form.data["product_image"]
         url = None
 
@@ -45,21 +51,35 @@ def create_product():
                 return {"product_image": "Image upload fail. Please try again later."}, 500
             url = upload["url"]
 
-        new_product = Product(
-            name=form.data["name"],
-            category=form.data["category"],
-            description=form.data["description"],
-            price=form.data["price"],
-            seller_id=current_user.id,
-            product_image=url
-        )
+        params = {
+            "name": form.data["name"],
+            "category": form.data["category"],
+            "description": form.data["description"],
+            "price": form.data["price"],
+            "seller_id": current_user.id,
+            "product_image": url
+        }
+        
+        new_product = Product(**params)
 
+        print("------⭐>", new_product)  # Print new_product here
+        
         db.session.add(new_product)
         db.session.commit()
         return new_product.to_dict(), 201
     
     return form.errors, 400
 
+
+
+  # new_product = Product(
+        #     name=form.data["name"],
+        #     category=form.data["category"],
+        #     description=form.data["description"],
+        #     price=form.data["price"],
+        #     seller_id=current_user.id,
+        #     product_image=url
+        # )
 
 
 @product_routes.route('/<int:id>', methods=['PUT'])

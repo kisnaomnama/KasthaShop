@@ -1,20 +1,4 @@
-/* :root {
-    --primary-color: #1d1e22; 
-    --secondary-color: #275e68;
-    --text-color: #333; 
-    --background-color: #966F33; 
-    --are-ya-yellow: #feda6a;
-    --silver-fox: #d4d4dc;
-    --deep-matte-grey: #393f4d;
-    --dark-slate: #0e0e2e;
-    --french-laundry-blue: #3a4660; 
-    --comfortably-tan: #c9af98; 
-    --peachy-kreme: #ed8a63; 
-    --brown-bonnet: #845007; 
-    --error-red: red;
-  } */
 
-  
   .navigation {
     display: flex;
     align-items: center;
@@ -30,117 +14,62 @@
   .Kastha-logo {
     width: 60px; 
     height: 40px;
-   
     margin-right: 5px; 
   }
   
-  .home-page-div a {
+  .kastha-logo-div a {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: inherit;
   }
+  .kastha-logo-div a:hover{
+    text-shadow: 2px 2px 4px var(--dark-slate);
+  }
   
-  .search-div {
+  .search-icon {
     display: flex;
     align-items: center;
   }
   
-  .search-div input {
-    margin-right: 10px; /* Adjust as needed */
+  .search-icon input {
+    margin-right: 10px; 
   }
   
-  .home-page-div,
+
   .add-product a,
-  .profile-div,
-  .cart-icon {
+  .profile-icon,
+  .cart-icon{
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
   }
 
-  .home-page-div :hover,
+
   .add-product :hover,
-  .profile-div :hover,
+  .profile-icon :hover,
   .icon :hover{
     color: var(--silver-fox);
   }
 
 
-  .profile-div button {
+  /* .profile-icon button {
     background-color: var(--dark-slate); 
     color: var(--silver-fox);
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .cart-icon {
-    font-size: 26px; /* Adjust the size as needed */
-  }
-  
-  /* .navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 10px 20px;
-    background-color: var(--brown-bonnet);
-    height: 40px;
-  }
-  
-  .left-home-page-div {
-   
-  }
-  
-  .mid-search-div {
- 
-  }
-
-  .mid-search-div input{
-    
-  }
-  .add-product{
-
-  }
-  
-  .add-product a{
-    text-decoration: none;
-    color: var(--dark-slate);
-  }
-  
-  .add-product a:hover{
-
-  }
-
-  .right-profile-div {
-   
-  }
-  
-  .left-home-page-div a {
-    text-decoration: none;
-    color: var(--primary-color);
-  }
-  
-  .left-home-page-div a:hover {
-    color: var(--french-laundry-blue); 
-  }
-  
-  .mid-search-div input[type="text"] {
-    border: 1px solid var(--secondary-color); 
   } */
   
-  .profile-dropdown {
-    position: absolute;
+  .cart-icon button{
+    font-size: 26px; 
   }
-
   
-  .profile-div button:hover {
+  .profile-icon button:hover {
     background-color: var(--french-laundry-blue); 
   }
 
-  
-  /* .left-home-page-div span {
-    font-weight: bold; 
-  } */
+
 
   .profile-dropdown {
     position: absolute;
@@ -151,9 +80,17 @@
     border-radius: 5px;
     background-color: var(--dark-slate);
     z-index: 1;
-    color: var(--silver-fox);
     width: 80px;
   }
+
+  .profile-dropdown li{
+    color:var(--silver-fox);
+    text-decoration: none;
+    cursor: pointer;
+    text-decoration: none; 
+    overflow: hidden;
+  }
+
 
   .profile-dropdown li:hover{
     color:var(--peachy-kreme);

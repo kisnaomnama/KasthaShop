@@ -1,9 +1,11 @@
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./ProductForm.css"
 import { NavLink, useNavigate } from "react-router-dom"
 import { FaCamera } from "react-icons/fa";
-
+import { createProductThunk } from "../../redux/product";
+import { ToastContainer, toast } from "react-toastify"
 
 function ProductForm() {
     const dispatch = useDispatch()
@@ -12,16 +14,31 @@ function ProductForm() {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState()
-    const [catagory, setCatagory] = useState()
-    const [previewImg, setPreviewImg] = useState()
+    const [category, setCategory] = useState()
+    const [product_image, setProduct_image] = useState()
     const [imageLoading, setImageLoading] = useState(false);
     const [error, setError] = useState({})
+    // const [product_image, setPreviewUrl] = useState(null);
 
     const currentUser = useSelector(state => state.session['user'])
+    const categories = ["Thanka Paintings", "Budda Statues", "Singings Bowls", "Prayer Flags", "Prayer Wheels", "Gifts etc"]
+
 
     useEffect(() => {
         if (!currentUser) navigate('/')
     }, [navigate, currentUser])
+
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setProduct_image(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,71 +49,106 @@ function ProductForm() {
         formData.append('name', name)
         formData.append('description', description)
         formData.append('price', price)
-        formData.append('catagory', catagory)
-        formData.append('preview_img', previewImg)
+        formData.append('category', category)
+        formData.append('product_image', product_image)
 
         setImageLoading(false)
         setError({})
 
-        // dispatch() dispactch add product
+        // dispatch(createProductThunk(formData)).then(newProduct => {
+        //     toast.success("Successfully uploaded song", {
+        //         onClose: () => navigate(`/`)
+        //     })
+        // })  
 
+       const newProduct =  dispatch(createProductThunk(formData))    
+        navigate(`/products/${newProduct.id}`)     
     }
 
     useEffect(() => {
         const errObj = {}
+
         if (!name.length) errObj.name = 'Name Required'
         if (!description.length) errObj.description = 'Description Required'
         if (!price) errObj.price = 'Price Required'
-        if (!catagory) errObj.catagory = 'Catagory Required'
-        if (!previewImg) errObj.previewImg = "Preview image required"
+        if (!category) errObj.category = 'Category Required'
+        if (!product_image) errObj.product_image = "Preview image required"
 
-    }, [name, description, price, catagory, previewImg])
+        setError(errObj);
+    }, [name, description, price, category, product_image]);
 
     return (
-        <div className='ProductForm'>
-            <form className="add-product" onSubmit={handleSubmit}>
-                <h1>Add Product</h1>
+        <div className='ProductForm-wrapper'>
+            <h1>Add Product</h1>
+            <form className="add-product-form" onSubmit={handleSubmit}>
 
                 <div className="left-image-div">
+
                     <label>
                         <FaCamera />
                         Upload image
-                        <input type="file" name="previewImg" onChange={(e) => setPreviewImg(e.target.files[0])} accept="image/*" />
+                        <input
+                            type="file"
+                            name="product_image"
+                            onChange={handleFileChange}
+                            accept="image/*"
+                        />
                     </label>
-                    {error.previewImg && <h5>{error.previewImg}</h5>}
+
+                    <div className="image-preview-div">
+                        {product_image && <img src={product_image} alt="Preview" />}
+                    </div>
+                    <div className="error-message" id="product_image-error">
+                        {error.product_image && <p>{error.product_image}</p>}
+                    </div>
+
                 </div>
 
                 <div className="right-data-fill-div">
                     <label>
                         Name:
-                        <input type="text" name="name" placeholder={"name"} value={name} onChange={(e) => setName(e.target.value)} />
+                        <input type="text"
+                            name="name"
+                            placeholder={"name"}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)} />
+
                     </label>
-                    {error.name && <h5>{error.name}</h5>}
+                    <div className="error-message" id="name-error">
+                        {error.name && <p>{error.name}</p>}
+                    </div>
                     <br />
 
                     <label>
                         Description:
                         <input type="text" name="description" placeholder={"description"} value={description} onChange={(e) => setDescription(e.target.value)} />
                     </label>
-                    {error.description && <h5>{error.description}</h5>}
+                    <div className="error-message" id="description-error">
+                        {error.description && <p>{error.description}</p>}
+                    </div>
                     <br />
 
                     <label>
                         Price:
                         <input type="text" name="price" placeholder={"price"} value={price} onChange={(e) => setPrice(e.target.value)} />
                     </label>
-                    {error.price && <h5>{error.price}</h5>}
+                    <div className="error-message" id="price-error">
+                        {error.price && <p>{error.price}</p>}
+                    </div>
+
                     <br />
 
-                    <label htmlFor="catagory">Choose a Catagory:
-                    <select name="catagory" id="catagory" onChange={(e) => setCatagory(e.target.value)}>
-                        <option value="statues">Statues</option>
-                        <option value="paintings">Paintings</option>
-                        <option value="bags">Bags</option>
-                        <option value="clothings">Clothings</option>
-                        <option value="souvenirs">Souvenirs</option>
-                    </select>
+                    <label htmlFor="category">Choose a Category:
+                        <select name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
+                            {categories.map((category, index) => (
+                                <option key={index} value={category}>{category}</option>
+                            ))}
+                        </select>
                     </label>
+                    <div className="submit-div">
+                        <button type="submit" disabled={Object.values(error).length > 0}>Submit</button>
+                        {(imageLoading) && <p>Loading...</p>}
+                    </div>
                 </div>
             </form>
         </div>

@@ -127,7 +127,7 @@ def seed_products():
 
         {
             "seller_id": 2,
-            "name": "Full Gold Plated Floral Motif Carved Shakyamuni Buddha Statue 5.5",
+            "name": "Gold Plated Shakyamuni Buddha Statue 5.5",
             "price": 200,
             "category": categories[2],
             "description": "Shakyamuni Buddha, also known as Gautama Buddha, is the historical founder of Buddhism. He renounced his princely life to seek enlightenment and the truth of existence.",
