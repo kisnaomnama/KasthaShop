@@ -1,5 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, redirect, jsonify
 from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import User
 
 user_routes = Blueprint('users', __name__)
@@ -25,3 +26,21 @@ def user(id):
     if not user:
         return {"message": "User couldn't be found"}, 404
     return user.to_dict()
+
+
+
+@user_routes.route('/<int:id>/reviews')
+@login_required
+def user_reviews(id):
+    """Get all reviews belonged to a user by id"""
+    user = User.query.get(id)
+
+    if not user:
+        return {"message": "User couldn't be found"}, 404
+
+    if user.id != current_user.id:
+        return redirect("/")
+
+    reviews = [review.to_dict() for review in user.reviews]
+
+    return reviews, 200

@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { NavLink } from "react-router-dom"; // Import NavLink
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -50,6 +51,12 @@ function ProfileButton() {
             <>
               <li>{user.username}</li>
               <li>{user.email}</li>
+              <li>
+                <NavLink to= "/products/current" className="manage-links">Manage products</NavLink>
+              </li>
+              <li>
+                <NavLink to= "/reviews/current" className="manage-links">Manage Reviews</NavLink>
+              </li>
               <li>
                 <button onClick={logout}>Log Out</button>
               </li>

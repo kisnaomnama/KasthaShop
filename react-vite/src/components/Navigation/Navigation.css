@@ -1,96 +1,75 @@
-/* :root {
-    --primary-color: #1d1e22; 
-    --secondary-color: #275e68;
-    --text-color: #333; 
-    --background-color: #966F33; 
-    --are-ya-yellow: #feda6a;
-    --silver-fox: #d4d4dc;
-    --deep-matte-grey: #393f4d;
-    --dark-slate: #0e0e2e;
-    --french-laundry-blue: #3a4660; 
-    --comfortably-tan: #c9af98; 
-    --peachy-kreme: #ed8a63; 
-    --brown-bonnet: #845007; 
-    --error-red: red;
-  } */
 
-  .profile-dropdown {
-    position: absolute;
-  }
-  
   .navigation {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: flex-end;
-    padding: 10px 20px;
     background-color: var(--brown-bonnet);
-    height: 40px;
-  }
-  
-  .left-home-page-div {
-    /* flex: 1; */
-  }
-  
-  .mid-search-div {
- 
-  }
-
-  .mid-search-div input{
-    /* width: 100%; */
-  }
-  .add-product{
-
-  }
-  
-  .add-product a{
-    text-decoration: none;
     color: var(--dark-slate);
-  }
-  
-  .add-product a:hover{
-
-  }
-
-  .right-profile-div {
+    transition: color 0.4s ease;
+    padding: 10px 20px 5px 20px;
+    font-size: larger;
    
   }
+
+  .Kastha-logo {
+    width: 60px; 
+    height: 40px;
+    margin-right: 5px; 
+  }
   
-  .left-home-page-div a {
+  .kastha-logo-div a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    color: var(--primary-color);
+    color: inherit;
+  }
+  .kastha-logo-div a:hover{
+    text-shadow: 2px 2px 4px var(--dark-slate);
   }
   
-  .left-home-page-div a:hover {
-    color: var(--french-laundry-blue); 
+  .search-icon {
+    display: flex;
+    align-items: center;
   }
   
-  .mid-search-div input[type="text"] {
-    border: 1px solid var(--secondary-color); 
+  .search-icon input {
+    margin-right: 10px; 
   }
   
-  
-  .right-profile-div button {
-    padding: 8px 12px;
+
+  .add-product a,
+  .profile-icon,
+  .cart-icon{
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+
+  .add-product :hover,
+  .profile-icon :hover,
+  .icon :hover{
+    color: var(--silver-fox);
+  }
+
+
+  /* .profile-icon button {
     background-color: var(--dark-slate); 
     color: var(--silver-fox);
     border: none;
     border-radius: 4px;
     cursor: pointer;
+  } */
+  
+  .cart-icon button{
+    font-size: 26px; 
   }
   
-  .right-profile-div button:hover {
+  .profile-icon button:hover {
     background-color: var(--french-laundry-blue); 
   }
 
-  .Kastha-logo {
-    width: 60px; 
-    height: 40px; 
-    margin-right: 5px; 
-  }
-  
-  .left-home-page-div span {
-    font-weight: bold; 
-  }
+
 
   .profile-dropdown {
     position: absolute;
@@ -101,11 +80,22 @@
     border-radius: 5px;
     background-color: var(--dark-slate);
     z-index: 1;
-    color: var(--silver-fox);
-    width: 80px;
+    padding: 5px;
   }
 
-  .profile-dropdown li:hover{
+  .profile-dropdown li{
+    color:var(--silver-fox);
+    text-decoration: none;
+    cursor: pointer;
+    text-decoration: none; 
+    overflow: hidden;
+  }
+
+  .manage-links{
+    color:var(--brown-bonnet);
+  }
+
+  .manage-links:hover{
     color:var(--peachy-kreme);
     cursor: pointer;
     text-decoration: none; 

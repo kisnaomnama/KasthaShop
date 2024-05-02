@@ -2,11 +2,12 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import HomePage from '../components/HomePage';
-import Product from '../components/Product';
-// import LoginFormModal from '../components/LoginFormModal';
-// import SignupFormModal from '../components/SignupFormModal';
+import ProductDetail from '../components/ProductDetail';
+import ProductForm from '../components/ProductForm';
+import ManageProducts from '../components/ManageProducts';
+import ManageReviews from '../components/ManageReviews';
+import EditProduct from '../components/EditProduct';
 import Layout from './Layout';
-
 
 export const router = createBrowserRouter([
   {
@@ -17,8 +18,24 @@ export const router = createBrowserRouter([
         element: <HomePage/>,
       },
       {
+        path: "/products/:productId",
+        element: <ProductDetail/>,
+      },
+      {
         path: "/products/new",
-        element: <Product/>,
+        element: <ProductForm/>,
+      },
+      {
+        path: "/products/:productId/edits",
+        element: <EditProduct/>,
+      },
+      {
+        path: "/products/current",
+        element: <ManageProducts/>,
+      },
+      {
+        path: "/reviews/current",
+        element: <ManageReviews/>,
       },
       {
         path: "login",
