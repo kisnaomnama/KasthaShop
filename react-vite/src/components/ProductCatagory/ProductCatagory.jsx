@@ -1,7 +1,7 @@
 
 import "./ProductCatagory.css"
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom"
+import { useState} from "react";
+// import { NavLink } from "react-router-dom"
 
 
 function ProductCatagory({ uniqueCategories}) {
