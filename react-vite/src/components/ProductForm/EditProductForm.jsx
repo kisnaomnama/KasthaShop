@@ -8,6 +8,7 @@ import { editProductThunk } from "../../redux/product";
 
 
 function EditProductForm({ product, FormType }) {
+    console.log(product)
     const productId = product.id
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -73,7 +74,7 @@ function EditProductForm({ product, FormType }) {
         if (!description.length) errObj.description = 'Description Required'
         if (!price) errObj.price = 'Price Required'
         if (!category) errObj.category = 'Category Required'
-        if (!product_image) errObj.product_image = "Preview image required"
+        if (!product_image && !showImage) errObj.product_image = "Preview image required"
 
         setError(errObj);
     }, [name, description, price, category, product_image]);

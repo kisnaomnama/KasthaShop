@@ -46,7 +46,7 @@ const allProductsByUsers = (products) => {
 
 //********************************** Thunk action creator ***********************//
 export const loadProductsThunk = () => async (dispatch) => {
-    const res = await fetch('/api/products')
+    const res = await fetch('/api/products/')
     if (res.ok) {
         const { Products } = await res.json()
         // console.log("23 ----🌟>", Products)
@@ -58,7 +58,7 @@ export const createProductThunk = (product) => async (dispatch) => {
     // for (const [key, value] of product.entries()) {
     //     console.log("product====>", key, "= ", value);
     // }
-    const res = await fetch("/api/products/", {
+    const res = await fetch("/api/products", {
         method: "POST",
         body: product
     });
