@@ -115,7 +115,7 @@ export const deleteProductThunk = (productId) => async (dispatch) => {
 
 
 export const fetchAllProductCurrentUserThunk = () => async (dispatch) => {
-    const response = await csrfFetch('/api/productss/current');
+    const response = await fetch('/api/productss/current');
     if (response.ok) {
         const data = await response.json();
         dispatch(allProductsByUsers(data));

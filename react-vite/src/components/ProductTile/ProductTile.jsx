@@ -1,5 +1,5 @@
 import "./ProductTile.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { FaSearchPlus } from "react-icons/fa";
 import OpenModalButton from "../OpenModalButton";
 import DeleteProduct from "../ManageProducts/DeleteProduct";

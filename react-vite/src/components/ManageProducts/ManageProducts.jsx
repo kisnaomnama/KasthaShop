@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadProductsThunk } from "../../redux/product";
 import { NavLink } from "react-router-dom";
