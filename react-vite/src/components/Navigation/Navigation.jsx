@@ -29,6 +29,9 @@ function Navigation() {
       <div className="icon cart-icon">
         <FaShoppingCart />
       </div>
+      <div>
+      <p>Hello {sessionUser?.first_name}!</p>
+      </div>
       <div className='icon profile-icon'>
         <ProfileButton user={sessionUser} />
       </div>

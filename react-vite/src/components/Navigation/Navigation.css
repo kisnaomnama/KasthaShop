@@ -80,7 +80,7 @@
     border-radius: 5px;
     background-color: var(--dark-slate);
     z-index: 1;
-    width: 80px;
+    padding: 5px;
   }
 
   .profile-dropdown li{
@@ -91,8 +91,11 @@
     overflow: hidden;
   }
 
+  .manage-links{
+    color:var(--brown-bonnet);
+  }
 
-  .profile-dropdown li:hover{
+  .manage-links:hover{
     color:var(--peachy-kreme);
     cursor: pointer;
     text-decoration: none; 

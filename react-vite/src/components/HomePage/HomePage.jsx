@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadProductsThunk } from "../../redux/product";
 import ProductTile from "../ProductTile";
 import ProductCatagory from "../ProductCatagory";
 import "./HomePage.css"
-import { NavLink } from "react-router-dom"
+
 
 
 function HomePage() {

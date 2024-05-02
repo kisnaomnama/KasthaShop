@@ -1,8 +1,16 @@
 import "./ProductTile.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaSearchPlus } from "react-icons/fa";
 
-function ProductTile({ key, product }) {
+function ProductTile({ product, manageProduct }) {
+  // const navigate = useNavigate()
+  const productId = product.id
+
+  const handleDelete = (e) =>{
+    e.preventDefault()
+
+  }
+
   return (
     <div className="Product-tile-div">
       <div className="img-div">
@@ -20,6 +28,13 @@ function ProductTile({ key, product }) {
         </NavLink>
         <p className="product-price">$ {product.price}</p>
       </div>
+      {manageProduct && <div className ="update-delete-div">
+        <hr />      
+        <NavLink to={`/products/${productId}/edits`} className="update-link-text">
+            Edit
+          </NavLink>
+        <button onClick={handleDelete}>Delete</button>
+      </div>}
     </div>
   );
 }

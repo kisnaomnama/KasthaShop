@@ -14,7 +14,6 @@ def all_products():
     return {'Products': [product.to_dict() for product in products]}, 200
 
 
-
 @product_routes.route('/<int:id>')
 @login_required
 def product_by_id(id):
@@ -38,14 +37,15 @@ def create_product():
     csrf_token = request.cookies.get("csrf_token", "")
     form["csrf_token"].data = csrf_token
 
-    print("+++++++++", form.data)
-    for key, value in form.data.items():
-            print("product====>", key, "= ", value)
+    # print("+++++++++", form.data)
+
+    # for key, value in form.data.items():
+            # print("product Before====>", key, "= ", value)
 
     if form.validate_on_submit():
 
-        for key, value in form.data.items():
-            print("product====>", key, "= ", value)
+        # for key, value in form.data.items():
+        #     print("product After ====>", key, "= ", value)
 
 
         image = form.data["product_image"]
@@ -70,14 +70,13 @@ def create_product():
         
         new_product = Product(**params)
 
-        print("------⭐>", new_product)  # Print new_product here
+        # print("------⭐>", new_product)  # Print new_product here
         
         db.session.add(new_product)
         db.session.commit()
         return new_product.to_dict(), 201
     
     return form.errors, 400
-
 
 
   # new_product = Product(
@@ -177,3 +176,12 @@ def create_product_review(id):
         return {**new_review.to_dict(), "user": new_review.user.to_dict()}, 200
 
     return form.errors, 400
+
+
+@product_routes.route('/current')
+@login_required
+def user_products():
+    """Returns all products created by the current user"""
+    user_id = current_user.id
+    products = Product.query.filter_by(seller_id=user_id).all()
+    return [product.to_dict() for product in products], 200

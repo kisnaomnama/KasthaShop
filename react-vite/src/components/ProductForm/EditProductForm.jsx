@@ -7,7 +7,7 @@ import { FaCamera } from "react-icons/fa";
 import { createProductThunk } from "../../redux/product";
 // import { ToastContainer, toast } from "react-toastify"
 
-function ProductForm({product, FormType}) {
+function EditProductForm({ product, FormType }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -45,9 +45,8 @@ function ProductForm({product, FormType}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setImageLoading(true)
-
+        
         const formData = new FormData()
-
         formData.append('name', name)
         formData.append('description', description)
         formData.append('price', price)
@@ -55,21 +54,14 @@ function ProductForm({product, FormType}) {
         formData.append('product_image', product_image)
 
         setImageLoading(false)
-       
 
-        // dispatch(createProductThunk(formData)).then(newProduct => {
-        //     toast.success("Successfully uploaded song", {
-        //         onClose: () => navigate(`/`)
-        //     })
-        // })  
-
-       const newProduct = await dispatch(createProductThunk(formData))    
-       if(newProduct.errors){
-        setError(newProduct.errors)
-       }
-       else{
-           navigate(`/products/${newProduct.id}`)
-       }
+        const newProduct = await dispatch(createProductThunk(formData))
+        if (newProduct.errors) {
+            setError(newProduct.errors)
+        }
+        else {
+            navigate(`/products/${newProduct.id}`)
+        }
         // navigate(`/products/${newProduct.id}`)     
     }
 
@@ -87,8 +79,8 @@ function ProductForm({product, FormType}) {
 
     return (
         <div className='ProductForm-wrapper'>
-            <h1>Add Product</h1>
-       
+            <h1>Edit Product</h1>
+
             <form className="add-product-form" onSubmit={handleSubmit}>
 
                 <div className="left-image-div">
@@ -164,4 +156,4 @@ function ProductForm({product, FormType}) {
     );
 }
 
-export default ProductForm;
+export default EditProductForm;

@@ -4,6 +4,7 @@ import "./ProductDetail.css"
 import { useParams } from "react-router-dom"
 import { productFetchByIdThunk } from "../../redux/product";
 import ReviewTile from "../ReviewTile";
+// import { calculateAverageReview } from "../../../utils/starRatings";
 
 
 function ProductDetail() {
@@ -23,12 +24,12 @@ function ProductDetail() {
     //     console.log("User:", review.customer.first_name); // Assuming there's a user property in each review object
     //     console.log("Date:", review.created_at); // Assuming there's a date property in each review object
     // }
-
     if (!product) {
         return <div className="product-loading">Product not found or still loading...</div>;
     }
 
     const { reviews } = product
+    // const averageRating = calculateAverageReview(reviews)
 
     return (
         <div className="product-details">
@@ -51,7 +52,7 @@ function ProductDetail() {
                     <div className="review-div">
                         <h3>Reviews</h3>
 
-                        {reviews.map(review =>
+                        {reviews?.map(review =>
                             <ReviewTile key={review.id} review={review} />)
                         }
                     </div>
