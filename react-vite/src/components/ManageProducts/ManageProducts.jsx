@@ -8,7 +8,6 @@ import "./ManageProducts.css"
 
 
 function ManageProducts() {
-    const [manageProduct, setManageProduct] = useState(true)
 
     const dispatch = useDispatch();
     const productObj = useSelector(state => state.products)
@@ -38,7 +37,7 @@ function ManageProducts() {
             <div className="body-div">
                 <div className="product-grid">
                     {usersProduct.map((product) =>
-                        <ProductTile key={product.id} product={product} manageProduct = {manageProduct} className ="grid-item"/>
+                        <ProductTile key={product.id} product={product} manageProduct = {true} className ="grid-item"/>
                     )}
                 </div>
             </div>

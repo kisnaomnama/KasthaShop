@@ -4,30 +4,32 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ProductForm.css"
 import { useNavigate } from "react-router-dom"
 import { FaCamera } from "react-icons/fa";
-import { createProductThunk } from "../../redux/product";
-// import { ToastContainer, toast } from "react-toastify"
+import { editProductThunk } from "../../redux/product";
+
 
 function EditProductForm({ product, FormType }) {
+    const productId = product.id
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState()
-    const [category, setCategory] = useState()
+    const [category, setCategory] = useState(product.category || "");
     const [product_image, setProduct_image] = useState()
     const [imageLoading, setImageLoading] = useState(false);
     const [error, setError] = useState({})
     const [showImage, setShowImage] = useState()
-    // const [product_image, setPreviewUrl] = useState(null);
-
-    const currentUser = useSelector(state => state.session['user'])
-    const categories = ["Thanka Paintings", "Budda Statues", "Singings Bowls", "Prayer Flags", "Prayer Wheels", "Gifts etc"]
-
 
     useEffect(() => {
-        if (!currentUser) navigate('/')
-    }, [navigate, currentUser])
+        if (product) {
+            setName(product.name || "");
+            setDescription(product.description || "");
+            setPrice(product.price || "");
+            setCategory(product.category || "");
+            setShowImage(product.product_image || "");
+        }
+    }, [product]);
 
 
     const handleFileChange = (e) => {
@@ -45,7 +47,7 @@ function EditProductForm({ product, FormType }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setImageLoading(true)
-        
+
         const formData = new FormData()
         formData.append('name', name)
         formData.append('description', description)
@@ -55,14 +57,13 @@ function EditProductForm({ product, FormType }) {
 
         setImageLoading(false)
 
-        const newProduct = await dispatch(createProductThunk(formData))
+        const newProduct = await dispatch(editProductThunk(formData, productId))
         if (newProduct.errors) {
             setError(newProduct.errors)
         }
         else {
             navigate(`/products/${newProduct.id}`)
         }
-        // navigate(`/products/${newProduct.id}`)     
     }
 
     useEffect(() => {
@@ -80,10 +81,10 @@ function EditProductForm({ product, FormType }) {
     return (
         <div className='ProductForm-wrapper'>
             <h1>Edit Product</h1>
-
+            
             <form className="add-product-form" onSubmit={handleSubmit}>
-
                 <div className="left-image-div">
+            <p className = "file-type">Accepted formats: PDF, PNG, JPG, JPEG, GIF</p>
 
                     <label>
                         <FaCamera />
@@ -138,16 +139,25 @@ function EditProductForm({ product, FormType }) {
                     </div>
 
                     <br />
-
-                    <label htmlFor="category">Choose a Category:
-                        <select name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
-                            {categories.map((category, index) => (
-                                <option key={index} value={category}>{category}</option>
-                            ))}
+                    <label htmlFor="category">
+                        Choose a Category:
+                        <select
+                            name="category"
+                            id="category"
+                            onChange={(e) => setCategory(e.target.value)}
+                            value={category}
+                        >
+                            <option value="Thanka Paintings">Thanka Paintings</option>
+                            <option value="Budda Statues">Budda Statues</option>
+                            <option value="Singings Bowls">Singings Bowls</option>
+                            <option value="Prayer Flags">Prayer Flags</option>
+                            <option value="Prayer Wheels">Prayer Wheels</option>
+                            <option value="Gifts etc">Gifts etc</option>
                         </select>
                     </label>
+
                     <div className="submit-div">
-                        <button type="submit" disabled={Object.values(error).length > 0}>Submit</button>
+                        <button type="submit" disabled={Object.values(error).length > 0}>Update</button>
                         {(imageLoading) && <p>Loading...</p>}
                     </div>
                 </div>

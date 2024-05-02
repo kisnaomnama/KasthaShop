@@ -74,6 +74,7 @@ export const createProductThunk = (product) => async (dispatch) => {
 };
 
 export const productFetchByIdThunk = (productId) => async (dispatch) => {
+
     const res = await fetch(`/api/products/${productId}`)
 
     if (res.ok) {
@@ -84,7 +85,13 @@ export const productFetchByIdThunk = (productId) => async (dispatch) => {
 }
 
 export const editProductThunk = (product, productId) => async (dispatch) => {
-    const res = await fetch(`/api/products/${productId}/edit`, {
+
+    for (const [key, value] of product.entries()) {
+        console.log("product====>", key, "= ", value);
+    }
+    console.log('ProductId =======>', productId)
+
+    const res = await fetch(`/api/products/${productId}`, {
         method: "PUT",
         body: product,
     });
@@ -96,6 +103,7 @@ export const editProductThunk = (product, productId) => async (dispatch) => {
 };
 
 export const deleteProductThunk = (productId) => async (dispatch) => {
+    console.log("From thunk===>", productId)
     const res = await fetch(`/api/products/${productId}`, {
         method: "DELETE",
     });
@@ -108,13 +116,12 @@ export const deleteProductThunk = (productId) => async (dispatch) => {
 
 export const fetchAllProductCurrentUserThunk = () => async (dispatch) => {
     const response = await csrfFetch('/api/productss/current');
-    if(response.ok){
+    if (response.ok) {
         const data = await response.json();
         dispatch(allProductsByUsers(data));
     }
     return response;
 }
-
 
 const initialState = {};
 
@@ -155,7 +162,7 @@ function productReducer(state = initialState, action) {
         }
 
         case USER_PRODUCTS: {
-            const userPostedProducts = { ...action.payload }; 
+            const userPostedProducts = { ...action.payload };
             const allProducts = Object.values(userPostedProducts);
             const userProductsObj = {};
             allProducts.forEach((product) => (userProductsObj[product.id] = product));

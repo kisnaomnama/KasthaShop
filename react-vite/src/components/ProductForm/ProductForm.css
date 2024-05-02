@@ -1,21 +1,14 @@
-/* CSS for ProductForm component */
 .ProductForm-wrapper {
-  /* display: flex; */
-  /* justify-content: center;
-    align-items: center;
-    height: 100vh; */
   padding: 20px;
-
+  margin: 0 200px;
 }
 
 .add-product-form {
   display: flex;
   justify-content: space-between;
- justify-content: center;
-  gap:20px;
-  margin: 0 200px;
-   border: 1px solid var(--brown-bonnet);
-   padding: 20px;
+  justify-content: center;
+  border: 1px solid var(--brown-bonnet);
+  padding: 20px;
 }
 
 .ProductForm-wrapper h1 {
@@ -24,18 +17,20 @@
 
 .left-image-div {
   flex: 1;
-  /* border: 2px solid var(--brown-bonnet); */
-  height: 300px;
+
+
 }
 
 .right-data-fill-div {
   display: flex;
   flex-direction: column;
-  flex: 1.5;
+  flex: 2;
 
 }
 
-.right-data-fill-div label {}
+.right-data-fill-div label {
+
+}
 
 .right-data-fill-div input[type="text"],
 .right-data-fill-div select {
@@ -47,21 +42,24 @@
   margin-bottom: 10px;
 }
 
-.right-data-fill-div select {
-  /* cursor: pointer; */
-}
+.right-data-fill-div select {}
 
 .error-message p {
   color: red;
 }
 
 .image-preview-div {
-  height: 100%;
-  padding: 5px;
-  background: linear-gradient(to right, #ff9966, var(--bluish-color));
+  margin-top: 10px;
+  border: 1px dotted black;
+  height: 300px;
+  width: 200px;
 }
 
 .image-preview-div img {
-  height: 100%;
-  width: 100%;
+  width: 90%;
+}
+
+.file-type{
+  font-size: smaller;
+  color: blueviolet;
 }

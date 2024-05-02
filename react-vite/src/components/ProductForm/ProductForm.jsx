@@ -92,6 +92,7 @@ function ProductForm({product, FormType}) {
             <form className="add-product-form" onSubmit={handleSubmit}>
 
                 <div className="left-image-div">
+                <p className = "file-type">Accepted formats: PDF, PNG, JPG, JPEG, GIF</p>
 
                     <label>
                         <FaCamera />

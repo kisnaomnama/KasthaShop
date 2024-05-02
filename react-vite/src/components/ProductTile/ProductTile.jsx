@@ -1,16 +1,14 @@
 import "./ProductTile.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaSearchPlus } from "react-icons/fa";
+import OpenModalButton from "../OpenModalButton";
+import DeleteProduct from "../ManageProducts/DeleteProduct";
 
 function ProductTile({ product, manageProduct }) {
-  // const navigate = useNavigate()
   const productId = product.id
-
-  const handleDelete = (e) =>{
-    e.preventDefault()
-
-  }
-
+  // const handleDelete = (e) => {
+  //   e.preventDefault()
+  // }
   return (
     <div className="Product-tile-div">
       <div className="img-div">
@@ -28,13 +26,15 @@ function ProductTile({ product, manageProduct }) {
         </NavLink>
         <p className="product-price">$ {product.price}</p>
       </div>
-      {manageProduct && <div className ="update-delete-div">
-        <hr />      
-        <NavLink to={`/products/${productId}/edits`} className="update-link-text">
+      {manageProduct &&
+        <div className="update-delete-div">
+          <hr />
+          <NavLink to={`/products/${productId}/edits`} className="update-link-text">
             Edit
           </NavLink>
-        <button onClick={handleDelete}>Delete</button>
-      </div>}
+          {/* <button onClick={handleDelete}>Delete</button> */}
+          <OpenModalButton className="manage-spot-button cursor" buttonText="Delete" modalComponent={<DeleteProduct product={product} />} />
+        </div>}
     </div>
   );
 }

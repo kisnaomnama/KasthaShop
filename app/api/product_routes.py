@@ -95,6 +95,10 @@ def update_product(id):
     """Update an existing product by id"""
     product = Product.query.get(id)
 
+    for key, value in product.items():
+        print("product +++++>", key, " = ", value)
+    print('ProductId ++++++>', id)
+
     if not product:
         return {"message": "Product couldn't be found"}, 404
 
@@ -131,8 +135,11 @@ def update_product(id):
 @product_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_product(id):
+    # print("From API server================>", id)
     """Delete a product by id"""
     product = Product.query.get(id)
+
+    # print("API===> product",product)
 
     if not product:
         return {"message": "Product couldn't be found"}, 404

@@ -17,7 +17,6 @@ const EditProduct= () => {
 
     return (
         <div className="update-product-wrapper">
-            <h1>Update your Product</h1>
             {isLoaded && <EditProductForm product={product} formType="Update Product"/>}
         </div>
     )
