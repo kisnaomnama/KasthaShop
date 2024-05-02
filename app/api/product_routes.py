@@ -95,9 +95,9 @@ def update_product(id):
     """Update an existing product by id"""
     product = Product.query.get(id)
 
-    for key, value in product.items():
-        print("product +++++>", key, " = ", value)
-    print('ProductId ++++++>', id)
+    # for key, value in product.data.items():
+    #     print("product +++++>", key, " = ", value)
+    # print('ProductId ++++++>', id)
 
     if not product:
         return {"message": "Product couldn't be found"}, 404
@@ -106,6 +106,13 @@ def update_product(id):
         return {"message": "Unathorized! seller_id does not match with user_id "}, 401
 
     form = ProductForm(obj=product)  # Pass the existing product data to the form
+
+    # for key, value in form.data.items():
+    #     print("product +++++>", key, " = ", value)
+    # print('ProductId ++++++>', id)
+
+    csrf_token = request.cookies.get("csrf_token", "")
+    form["csrf_token"].data = csrf_token
 
     if form.validate_on_submit():
         image = form.data["product_image"]

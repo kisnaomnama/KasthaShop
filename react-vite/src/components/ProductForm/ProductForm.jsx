@@ -57,20 +57,13 @@ function ProductForm({product, FormType}) {
         setImageLoading(false)
        
 
-        // dispatch(createProductThunk(formData)).then(newProduct => {
-        //     toast.success("Successfully uploaded song", {
-        //         onClose: () => navigate(`/`)
-        //     })
-        // })  
-
        const newProduct = await dispatch(createProductThunk(formData))    
        if(newProduct.errors){
         setError(newProduct.errors)
        }
        else{
            navigate(`/products/${newProduct.id}`)
-       }
-        // navigate(`/products/${newProduct.id}`)     
+       }    
     }
 
     useEffect(() => {
