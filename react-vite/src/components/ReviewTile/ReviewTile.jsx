@@ -2,7 +2,7 @@
 import "./ReviewTile.css";
 import { IoPersonCircleOutline, IoStarOutline, IoStar } from "react-icons/io5";
 
-function ReviewTile({ key, review }) {
+function ReviewTile({ review }) {
   // Function to render rating stars
   const renderRatingStars = (rating) => {
     const stars = [];
