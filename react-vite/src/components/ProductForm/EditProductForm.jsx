@@ -1,13 +1,13 @@
 
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import "./ProductForm.css"
 import { useNavigate } from "react-router-dom"
 import { FaCamera } from "react-icons/fa";
 import { editProductThunk } from "../../redux/product";
 
 
-function EditProductForm({ product, FormType }) {
+function EditProductForm({ product}) {
     console.log(product)
     const productId = product.id
     const dispatch = useDispatch()

@@ -7,7 +7,7 @@ import { FaCamera } from "react-icons/fa";
 import { createProductThunk } from "../../redux/product";
 // import { ToastContainer, toast } from "react-toastify"
 
-function ProductForm({product, FormType}) {
+function ProductForm() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
