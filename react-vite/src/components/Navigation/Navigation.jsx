@@ -37,27 +37,6 @@ function Navigation() {
       </div>
 
     </div>
-
-    // <div className='navigation navigation-wrapper'>
-    //   <div className='left-home-page-div'>
-    //     <NavLink to="/"><img className={'Kastha-logo'} src={KasthaImage} alt="Home Image" />KasthaShop</NavLink>
-    //   </div>
-
-    //   <div className='mid-search-div'>
-    //     <input type="text" />
-    //     <FaSearch />
-    //   </div>
-    //   <div className ='add-product'>
-    //   {sessionUser && <NavLink to='products/new'>Add Product</NavLink>}
-    //   </div>
-
-    //   <FaShoppingCart />
-    //   <div className='right-profile-div'>
-
-    //       <ProfileButton user = {sessionUser}/>
-
-    //   </div>
-    // </div>
   );
 }
 

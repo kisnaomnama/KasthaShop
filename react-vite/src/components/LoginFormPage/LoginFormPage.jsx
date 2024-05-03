@@ -32,34 +32,43 @@ function LoginFormPage() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      {errors.length > 0 &&
-        errors.map((message) => <p key={message}>{message}</p>)}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
-      </form>
-    </>
+    
+    <div className="form-container login">
+    <h1 className="form-header">Log In</h1>
+    <form className="login-form form" onSubmit={handleSubmit}>
+      <label htmlFor="email" className="form-label">
+        Email:
+        <input
+          id="email"
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="form-input"
+        />
+      </label>
+      <div className='error-div'>
+        {errors.email && <p className="error-message">{errors.email}</p>}
+      </div>
+      <label htmlFor="password" className="form-label">
+        Password:
+        <input
+          id="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          className="form-input"
+        />
+      </label>
+      <div className='error-div'>
+        {errors.password && <p className="error-message">{errors.password}</p>}
+      </div>
+      <button type="submit" className="submit-button">Log In</button>
+      <button onClick={loginDemo} className="submit-button demo-user">Login as Demo-user</button>
+    </form>
+  </div>
+
   );
 }
 
