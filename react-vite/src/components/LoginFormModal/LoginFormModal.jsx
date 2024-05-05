@@ -29,7 +29,6 @@ function LoginFormModal() {
   };
 
   function loginDemo() {
-    // console.log('login as demo')
     const email = "tom@aa.io";
     const password = "password";
     closeModal()

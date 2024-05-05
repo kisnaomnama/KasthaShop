@@ -8,6 +8,9 @@ const EDIT_PRODUCT = 'products/EDIT_PRODUCT';
 const DELETE_PRODUCT = 'products/DELETE_PRODUCT'
 const USER_PRODUCTS = "spots/USER_PRODUCTS"
 
+const UPDATE_PRODUCT_REVIEW = 'products/UPDATE_PRODUCT_REVIEW';
+const DELETE_PRODUCT_REVIEW = 'products/DELETE_PRODUCT_REVIEW';
+
 
 //********************************** POJO action creator **********************//
 
@@ -44,6 +47,20 @@ const allProductsByUsers = (products) => {
 }
 
 
+const updateProductReview = (productId, review) => ({
+    type: UPDATE_PRODUCT_REVIEW,
+    productId,
+    review
+});
+
+
+const deleteProductReview = (productId, reviewId) => ({
+    type: DELETE_PRODUCT_REVIEW,
+    productId,
+    reviewId
+});
+
+
 //********************************** Thunk action creator ***********************//
 export const loadProductsThunk = () => async (dispatch) => {
     const res = await fetch('/api/products/')
@@ -58,7 +75,8 @@ export const createProductThunk = (product) => async (dispatch) => {
     // for (const [key, value] of product.entries()) {
     //     console.log("product====>", key, "= ", value);
     // }
-    const res = await fetch("/api/products", {
+    
+    const res = await fetch("/api/products/", {
         method: "POST",
         body: product
     });
@@ -86,10 +104,10 @@ export const productFetchByIdThunk = (productId) => async (dispatch) => {
 
 export const editProductThunk = (product, productId) => async (dispatch) => {
 
-    for (const [key, value] of product.entries()) {
-        console.log("product====>", key, "= ", value);
-    }
-    console.log('ProductId =======>', productId)
+    // for (const [key, value] of product.entries()) {
+    //     console.log("product====>", key, "= ", value);
+    // }
+    // console.log('ProductId =======>', productId)
 
     const res = await fetch(`/api/products/${productId}`, {
         method: "PUT",
@@ -100,10 +118,14 @@ export const editProductThunk = (product, productId) => async (dispatch) => {
         dispatch(editProduct(data));
         return data;
     }
+    else {
+        const errors = await res.json();
+        return errors
+    }
 };
 
 export const deleteProductThunk = (productId) => async (dispatch) => {
-    console.log("From thunk===>", productId)
+    // console.log("From thunk===>", productId)
     const res = await fetch(`/api/products/${productId}`, {
         method: "DELETE",
     });
@@ -115,12 +137,61 @@ export const deleteProductThunk = (productId) => async (dispatch) => {
 
 
 export const fetchAllProductCurrentUserThunk = () => async (dispatch) => {
-    const response = await fetch('/api/productss/current');
-    if (response.ok) {
-        const data = await response.json();
+    const res = await fetch('/api/productss/current');
+    if (res.ok) {
+        const data = await res.json();
         dispatch(allProductsByUsers(data));
     }
-    return response;
+    return res;
+}
+
+
+export const createProductReviewThunk = (productId, review) => async dispatch => {
+
+    const res = await fetch(`/api/products/${productId}/reviews`, {
+        method: 'POST',
+        body: review
+    });
+
+    if (res.ok) {
+        const data = await res.json();
+        console.log("SUCCESS DATA>>>>>>>>", data)
+        dispatch(updateProductReview(productId, data));
+        return data;
+    }
+    else {
+        const errors = await res.json();
+        console.log("ERROR DATA>>>>>>>>", errors)
+        return errors
+    }
+
+}
+
+export const updateProductReviewThunk = (productId, reviewId, review, rating) => async dispatch => {
+    const res = await fetch(`/api/reviews/${reviewId}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            review,
+            rating
+        })
+    });
+    const data = await res.json();
+
+    if (!res.ok) return { "errors": data };
+    await dispatch(updateProductReview(productId, data));
+    return data;
+}
+
+export const deleteProductReviewThunk = (productId, reviewId) => async dispatch => {
+    const res = await fetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE'
+    });
+    const data = await res.json();
+    console.log(data)
+
+    if (!res.ok) return { 'errors': data };
+    await dispatch(deleteProductReview(productId, reviewId));
+    return data;
 }
 
 const initialState = {};
@@ -172,10 +243,29 @@ function productReducer(state = initialState, action) {
             };
         }
 
+        case UPDATE_PRODUCT_REVIEW: {
+            const newState = { ...state };
+            const reviews = newState.products[action.productId].reviews;
+            for (let i = 0; i < reviews.length; i++) {
+                const review = reviews[i];
+                if (review.id === action.review.id) {
+                    reviews.splice(i, 1);
+                }
+            }
+            reviews.push(action.review);
+            return newState;
+        }
+
+        case DELETE_PRODUCT_REVIEW: {
+            const newState = { ...state };
+            const reviews = newState.products[action.productId].reviews;
+            newState.products[action.productId].reviews = reviews.filter(review => review.id !== action.reviewId);
+            return newState;
+        }
+
         default:
             return state;
     }
 }
-
 
 export default productReducer;

@@ -33,7 +33,7 @@ function ProductTile({ product, manageProduct }) {
             Edit
           </NavLink>
           {/* <button onClick={handleDelete}>Delete</button> */}
-          <OpenModalButton className="manage-spot-button cursor" buttonText="Delete" modalComponent={<DeleteProduct product={product} />} />
+          <OpenModalButton className="manage-product-button cursor" buttonText="Delete" modalComponent={<DeleteProduct product={product} />} />
         </div>}
     </div>
   );

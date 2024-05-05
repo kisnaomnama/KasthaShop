@@ -1,0 +1,26 @@
+.stars-ratings {
+    margin-bottom: 10px;
+}
+
+.error-message {
+    color: red;
+}
+
+.create-review-form {
+    width: inherit;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(22, 18, 18, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-review-form textarea {
+    width: 95%;
+    height: 60px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--bluish);
+    border-radius: 5px;
+}

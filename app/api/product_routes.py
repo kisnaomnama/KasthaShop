@@ -165,8 +165,12 @@ def delete_product(id):
 @login_required
 def create_product_review(id):
     """Create a new review for a product by id"""
+
     form = ReviewForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+
+    # for key, value in form.data.items():
+    #         print("product Before====>", key, "= ", value)
 
     if form.validate_on_submit():
         product = Product.query.get(id)

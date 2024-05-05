@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { NavLink } from "react-router-dom"; // Import NavLink
+import { ImProfile } from "react-icons/im";
 
 function ProfileButton() {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
@@ -37,26 +40,27 @@ function ProfileButton() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(thunkLogout());
+    navigate('/')
     closeMenu();
   };
 
   return (
     <>
       <button onClick={toggleMenu}>
-        <FaUserCircle />
+        <ImProfile className ="profile-button"/>
       </button>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
           {user ? (
             <>
-              <li>{user.username}</li>
+              <li>Hello {user.username} !</li>
               <li>{user.email}</li>
               <li>
                 <NavLink to= "/products/current" className="manage-links">Manage products</NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to= "/reviews/current" className="manage-links">Manage Reviews</NavLink>
-              </li>
+              </li> */}
               <li>
                 <button onClick={logout}>Log Out</button>
               </li>

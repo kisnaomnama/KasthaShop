@@ -31,6 +31,17 @@ function LoginFormPage() {
     }
   };
 
+  function loginDemo() {
+    const email = "tom@aa.io";
+    const password = "password";
+    dispatch(
+      thunkLogin({
+        email,
+        password,
+      })
+    )
+  }
+
   return (
     
     <div className="form-container login">

@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./DeleteProduct.css"
-// import { getCurrentUserProducts } from "../../store/spots";
 import { deleteProductThunk } from "../../redux/product";
 
 const DeleteProduct = ({ product }) => {
