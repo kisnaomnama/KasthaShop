@@ -81,7 +81,7 @@ function EditProductForm({ product }) {
         if (!product_image && !showImage) errObj.product_image = "Preview image required"
 
         setError(errObj);
-    }, [name, description, price, category, product_image, showImage, error]);
+    }, [name, description, price, category, product_image]);
 
     return (
         <div className='ProductForm-wrapper'>
