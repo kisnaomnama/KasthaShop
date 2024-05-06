@@ -4,6 +4,10 @@
 
 .error-message {
     color: red;
+    height: auto;
+}
+.error-div{
+height: 14px;
 }
 
 .create-review-form {
@@ -14,6 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 284px;
 }
 
 .create-review-form textarea {

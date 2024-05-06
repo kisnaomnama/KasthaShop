@@ -1,13 +1,13 @@
 
 import { useEffect, useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import "./ProductForm.css"
 import { useNavigate } from "react-router-dom"
 import { FaCamera } from "react-icons/fa";
 import { editProductThunk } from "../../redux/product";
 
 
-function EditProductForm({ product}) {
+function EditProductForm({ product }) {
     console.log(product)
     const productId = product.id
     const dispatch = useDispatch()
@@ -43,6 +43,8 @@ function EditProductForm({ product}) {
             };
             reader.readAsDataURL(file);
         }
+
+        setProduct_image(file)
     };
 
     const handleSubmit = async (e) => {
@@ -73,7 +75,7 @@ function EditProductForm({ product}) {
         if (!name.length) errObj.name = 'Name Required'
         if (!description.length) errObj.description = 'Description Required'
         if (!price) errObj.price = 'Price Required'
-        if (price <= 0)  error.Obj ='Price must be greater than 0'
+        if (price <= 0) error.Obj = 'Price must be greater than 0'
         if (price > 10000) error.Obj = 'Price must be smaller than or equal to 10,000'
         if (!category) errObj.category = 'Category Required'
         if (!product_image && !showImage) errObj.product_image = "Preview image required"
@@ -84,10 +86,10 @@ function EditProductForm({ product}) {
     return (
         <div className='ProductForm-wrapper'>
             <h1>Edit Product</h1>
-            
+
             <form className="add-product-form" onSubmit={handleSubmit}>
                 <div className="left-image-div">
-            <p className = "file-type">Accepted formats: PDF, PNG, JPG, JPEG, GIF</p>
+                    <p className="file-type">Accepted formats: PDF, PNG, JPG, JPEG, GIF</p>
 
                     <label>
                         <FaCamera />
