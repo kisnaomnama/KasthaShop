@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadProductsThunk } from "../../redux/product";
 import ProductTile from "../ProductTile";
@@ -25,20 +25,20 @@ function HomePage() {
 
     // Removing duplicate categories (optional)
     const uniqueCategories = Array.from(new Set(categoriesArray));
-    
+
     // console.log("===========>", products)
     return (
-        <div className="homepage-div">
-            <div className="left-div">
-            <h1>Catagories</h1>
-                <ProductCatagory uniqueCategories = { uniqueCategories } />
-            </div>
-            <div className="right-div">
-                <h1>Products</h1>
-                <div className="product-grid">
-                    {products.map((product) =>
-                        <ProductTile key={product.id} product={product} />
-                    )}
+        <div className="home-div-wrapper">
+            <div className="homepage-div">
+                <div className="left-div">
+                    <ProductCatagory uniqueCategories={uniqueCategories} />
+                </div>
+                <div className="right-div">
+                    <div className="product-grid">
+                        {products.map((product) =>
+                            <ProductTile key={product.id} product={product} />
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

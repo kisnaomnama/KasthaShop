@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./ProductForm.css"
@@ -16,10 +15,11 @@ function ProductForm() {
     const [price, setPrice] = useState()
     const [category, setCategory] = useState()
     const [product_image, setProduct_image] = useState()
+
     const [imageLoading, setImageLoading] = useState(false);
     const [error, setError] = useState({})
     const [showImage, setShowImage] = useState()
-    // const [product_image, setPreviewUrl] = useState(null);
+
 
     const currentUser = useSelector(state => state.session['user'])
     const categories = ["Thanka Paintings", "Budda Statues", "Singings Bowls", "Prayer Flags", "Prayer Wheels", "Gifts etc"]
@@ -43,6 +43,7 @@ function ProductForm() {
     };
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
         setImageLoading(true)
 
@@ -55,15 +56,15 @@ function ProductForm() {
         formData.append('product_image', product_image)
 
         setImageLoading(false)
-       
 
-       const newProduct = await dispatch(createProductThunk(formData))    
-       if(newProduct.errors){
-        setError(newProduct.errors)
-       }
-       else{
-           navigate(`/products/${newProduct.id}`)
-       }    
+
+        const newProduct = await dispatch(createProductThunk(formData))
+        if (newProduct.errors) {
+            setError(newProduct.errors)
+        }
+        else {
+            navigate(`/products/${newProduct.id}`)
+        }
     }
 
     useEffect(() => {
@@ -72,6 +73,8 @@ function ProductForm() {
         if (!name.length) errObj.name = 'Name Required'
         if (!description.length) errObj.description = 'Description Required'
         if (!price) errObj.price = 'Price Required'
+        if (price <= 0) errObj.price = 'Price Must be greater than 0'
+        if (price > 10000) errObj.price = 'Price must be smaller than or equal to 10,000'
         if (!category) errObj.category = 'Category Required'
         if (!product_image) errObj.product_image = "Preview image required"
 
@@ -81,12 +84,11 @@ function ProductForm() {
     return (
         <div className='ProductForm-wrapper'>
             <h1>Add Product</h1>
-       
+
             <form className="add-product-form" onSubmit={handleSubmit}>
 
                 <div className="left-image-div">
-                <p className = "file-type">Accepted formats: PDF, PNG, JPG, JPEG, GIF</p>
-
+                    <p className="file-type">Accepted formats: PDF, PNG, JPG, JPEG, GIF</p>
                     <label>
                         <FaCamera />
                         Upload image
@@ -156,6 +158,10 @@ function ProductForm() {
             </form>
         </div>
     );
+
+
+
+    
 }
 
 export default ProductForm;

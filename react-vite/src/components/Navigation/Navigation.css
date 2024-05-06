@@ -1,64 +1,74 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--brown-bonnet);
+  color: var(--dark-slate);
+  transition: color 0.4s ease;
+  padding: 10px 20px 5px 20px;
+  font-size: larger;
+  background: rgb(138, 81, 2);
+  background: linear-gradient(175deg, 
+  rgba(138, 81, 2, 1) 19%, 
+  rgba(97, 63, 14, 1) 32%, 
+  rgba(103, 69, 17, 1) 61%, 
+  rgba(197, 199, 186, 1) 79%);
+}
 
-  .navigation {
+  .kastha-logo-div {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: var(--brown-bonnet);
-    color: var(--dark-slate);
-    transition: color 0.4s ease;
-    padding: 10px 20px 5px 20px;
-    font-size: larger;
-   
+    /* background-color: inherit; */
   }
 
   .Kastha-logo {
-    width: 60px; 
+    width: 60px;
     height: 40px;
-    margin-right: 5px; 
+    margin-right: 5px;
   }
-  
+
   .kastha-logo-div a {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: inherit;
   }
-  .kastha-logo-div a:hover{
-    text-shadow: 2px 2px 4px var(--dark-slate);
+
+  .kastha-logo-div a:hover {
+    /* text-shadow: 2px 2px 4px var(--dark-slate); */
   }
-  
+
   .search-icon {
     display: flex;
     align-items: center;
   }
-  
-  .search-icon input {
-    margin-right: 10px; 
-  }
-  
 
-  .add-product a,
+  .search-icon input {
+    margin-right: 10px;
+  }
+
+
+  /* .add-product a,
   .profile-icon,
   .cart-icon{
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-  }
+  } */
 
 
   .add-product :hover,
   .profile-icon :hover,
-  .icon :hover{
+  .icon :hover {
     color: var(--silver-fox);
   }
 
-  
-  .cart-icon button{
-    font-size: 26px; 
+
+  .cart-icon button {
+    font-size: 26px;
   }
-  
+
   .profile-icon button:hover {
-    background-color: var(--french-laundry-blue); 
+    background-color: var(--french-laundry-blue);
   }
 
 
@@ -74,29 +84,39 @@
     padding: 5px;
   }
 
-  .profile-dropdown li{
-    color:var(--silver-fox);
+  .profile-dropdown li {
+    color: var(--silver-fox);
     text-decoration: none;
     cursor: pointer;
-    text-decoration: none; 
+    text-decoration: none;
     overflow: hidden;
   }
 
-  .manage-links{
-    color:var(--brown-bonnet);
+  .manage-links {
+    color: var(--brown-bonnet);
   }
 
-  .manage-links:hover{
-    color:var(--peachy-kreme);
+  .manage-links:hover {
+    color: var(--peachy-kreme);
     cursor: pointer;
-    text-decoration: none; 
+    text-decoration: none;
     overflow: hidden;
   }
 
+  #login-first-name {
+    font-weight: bold;
+    color: var(--french-laundry-blue);
+  }
+
+  .profile-button {
+    height: 20px;
+    width: 20px;
+    color: var(--french-laundry-blue);
+    padding: 10px;
+  }
+
+  /* --------------login ---------------*/
 
 
-/* --------------login ---------------*/
 
-
-
-/*------------Sign up---------*/
+  /*------------Sign up---------*/

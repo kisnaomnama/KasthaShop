@@ -1,0 +1,18 @@
+.popup-message {
+  position: absolute;
+  background-color: rgb(231, 205, 175);
+  padding: 10px;
+  box-shadow: 0 0 10px rgb(15, 6, 46);
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  width: 200px;
+  text-align: center;
+}
+
+.popup-message p{
+font-size: 1.01rem;;
+}

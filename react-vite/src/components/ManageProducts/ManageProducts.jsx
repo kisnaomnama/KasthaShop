@@ -22,12 +22,13 @@ function ManageProducts() {
     const products = Object.values(productObj)
 
     const usersProduct = products.filter(product => product.seller.id === userId);
+    const noProductsForUser = usersProduct.length === 0;
 
     return (
         <div className="products-wrapper-div">
             <div className="header-div">
                 <h1>Manage your products</h1>
-
+                {noProductsForUser && <p>Start your online shop by adding products</p>}
                 <div className='add-product-div'>
                     <NavLink to='/products/new' className = "add-product-link">Add Product</NavLink>
                 </div>

@@ -103,7 +103,7 @@ def update_product(id):
         return {"message": "Product couldn't be found"}, 404
 
     if product.seller_id != current_user.id:
-        return {"message": "Unathorized! seller_id does not match with user_id "}, 401
+         return {"message": "Unathorized User!"}, 401
 
     form = ProductForm(obj=product)  # Pass the existing product data to the form
 
@@ -152,7 +152,7 @@ def delete_product(id):
         return {"message": "Product couldn't be found"}, 404
 
     if product.seller_id != current_user.id:
-            return {"message": "Unathorized! seller_id does not match with user_id "}, 401
+             return {"message": "Unathorized User!"}, 401
 
     db.session.delete(product)
     db.session.commit()
@@ -165,8 +165,12 @@ def delete_product(id):
 @login_required
 def create_product_review(id):
     """Create a new review for a product by id"""
+
     form = ReviewForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+
+    # for key, value in form.data.items():
+    #         print("product Before====>", key, "= ", value)
 
     if form.validate_on_submit():
         product = Product.query.get(id)
@@ -192,10 +196,23 @@ def create_product_review(id):
     return form.errors, 400
 
 
-@product_routes.route('/current')
+@product_routes.route('/<int:id>/reviews')
+def get_all_reviews_by_product_id(id):
+
+    """Get all reviews for a product by its ID"""
+    reviews = Review.query.filter_by(product_id=id).all()
+  
+    reviews_data = [review.to_dict() for review in reviews]
+
+    return {"reviews": reviews_data}, 200
+
+
+
+
+@product_routes.route('/currentt')
 @login_required
 def user_products():
     """Returns all products created by the current user"""
     user_id = current_user.id
     products = Product.query.filter_by(seller_id=user_id).all()
-    return [product.to_dict() for product in products], 200
+    return {'products': [product.to_dict() for product in products]}, 200

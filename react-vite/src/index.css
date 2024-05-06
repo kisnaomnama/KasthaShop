@@ -1,27 +1,39 @@
 :root {
-  --primary-color: #1d1e22; 
+  --primary-color: #1d1e22;
   --bluish: #275e68;
-  --text-color: #333; 
-  --background-color: #966F33; 
+  --text-color: #333;
+  --background-color: #966F33;
   --are-ya-yellow: #feda6a;
   --silver-fox: #d4d4dc;
   --deep-matte-grey: #393f4d;
   --dark-slate: #08084e;
-  --laundry-blue: #3a4660; 
-  --comfortably-tan: #c9af98; 
-  --peachy-kreme: #ed8a63; 
-  --brown-bonnet: #845007; 
+  --laundry-blue: #3a4660;
+  --comfortably-tan: #c9af98;
+  --peachy-kreme: #ed8a63;
+  --brown-bonnet: #845007;
   --error-red: red;
   --light-grey: #ccc;
-  --dark-grey:  #6c757d;
+  --dark-grey: #6c757d;
+  --model-background: rgba(24, 31, 43, 0.7);
 }
 
 * {
   font-family: 'Pacifico', cursive;
   color: var(--dark-slate);
-  /* font-size: 14px;
-  font-weight: bold; */
 }
-button{
+
+button {
   cursor: pointer;
+  background-color: var(--brown-bonnet);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: var(--silver-fox);
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: var(--bluish);
+  color: var(--silver-fox);
 }

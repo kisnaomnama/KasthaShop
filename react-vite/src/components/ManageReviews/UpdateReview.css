@@ -1,0 +1,63 @@
+/* UpdateReview.css */
+
+.update-review-modal {
+    width: 300px;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .update-review-modal h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: underline;
+  }
+  
+  .update-review-modal textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #5b8fb9;
+    border-radius: 5px;
+    resize: vertical;
+  }
+  
+  .update-review-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .error-message {
+    color: var(--error-red);
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .rating-rating {
+    margin-bottom: 20px;
+  }
+  
+  .star {
+    font-size: 1.2rem;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+
+  .update-review {
+    background-color: var(--brown-bonnet);
+    color: var(--silver-fox);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .update-review:disabled {
+    background-color: var(--silver-fox);
+    color: var(--brown-bonnet);
+    cursor: not-allowed;
+  }
+  

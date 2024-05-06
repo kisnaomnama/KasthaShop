@@ -73,11 +73,13 @@ function EditProductForm({ product}) {
         if (!name.length) errObj.name = 'Name Required'
         if (!description.length) errObj.description = 'Description Required'
         if (!price) errObj.price = 'Price Required'
+        if (price <= 0)  error.Obj ='Price must be greater than 0'
+        if (price > 10000) error.Obj = 'Price must be smaller than or equal to 10,000'
         if (!category) errObj.category = 'Category Required'
         if (!product_image && !showImage) errObj.product_image = "Preview image required"
 
         setError(errObj);
-    }, [name, description, price, category, product_image]);
+    }, [name, description, price, category, product_image, showImage, error]);
 
     return (
         <div className='ProductForm-wrapper'>
