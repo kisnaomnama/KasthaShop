@@ -26,7 +26,7 @@ def update_review(id):
         return {"message": "Review couldn't be found"}, 404
 
     if review.user_id != current_user.id:
-        return {"message": "Unathorized! review user_id does not match with current.user_id "}, 401
+        return {"message": "Unathorized User!"}, 401
 
     form = ReviewForm(obj=review)  # Pass the existing review object to the form
 
@@ -52,9 +52,17 @@ def delete_review(id):
         return {"message": "review couldn't be found"}, 404
 
     if review.user_id != current_user.id:
-        return {"message": "Unathorized! review user_id does not match with current.user_id "}, 401
+        return {"message": "Unathorized User!"}, 401
 
     db.session.delete(review)
     db.session.commit()
 
     return {"message": "Successfully deleted review"}, 200
+
+@review_routes.route('/currentt')
+@login_required
+def user_reviews():
+    """Returns all products created by the current user"""
+    user_id = current_user.id
+    reviews = Review.query.filter_by(user_id).all()
+    return {'reviews': [review.to_dict() for review in reviews]}, 200

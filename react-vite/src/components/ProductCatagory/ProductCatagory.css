@@ -1,10 +1,17 @@
 
 .category-div {
-    background-color: var(--brown-bonnet);;
-    padding: 20px;
+    /* background-color: var(--brown-bonnet);; */
+    padding: 10px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.category-div h3{
+    text-decoration: underline;
+    margin: 0;
+}
 .category-div ul {
     list-style-type: none;
     padding: 0;

@@ -8,11 +8,18 @@ const DeleteReview = ({ review }) => {
     const dispatch = useDispatch();
 
     const yesButtonClicked = async () => {
-        // const response = await dispatch(deleteProductReviewThunk(review.id));
-        // if (response.errors) {           
-        //    closeModal();
-        // }
-        // closeModal()
+ 
+        const reviewId = review.id
+        const productId = review.product_id
+
+        console.log("Front END THIS IS REVIEW ID:+++>> ", typeof (productId), typeof (reviewId))
+        console.log("THIS IS REVIEW ID:+++>> ",productId, "productId", reviewId)
+
+        const response = await dispatch(deleteProductReviewThunk(productId, reviewId));
+        if (response.errors) {           
+           closeModal();
+        }
+        closeModal()
     }
 
     const noButtonClicked = () => {

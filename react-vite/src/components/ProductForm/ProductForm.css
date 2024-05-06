@@ -25,12 +25,11 @@
   display: flex;
   flex-direction: column;
   flex: 2;
+  margin-left: 40px;
 
 }
 
-.right-data-fill-div label {
-
-}
+.right-data-fill-div label {}
 
 .right-data-fill-div input[type="text"],
 .right-data-fill-div select {
@@ -53,13 +52,18 @@
   border: 1px dotted black;
   height: 300px;
   width: 200px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  vertical-align: center;
+  padding: 3px;
 }
 
 .image-preview-div img {
-  width: 90%;
+  height: 100%;
 }
 
-.file-type{
+.file-type {
   font-size: smaller;
   color: blueviolet;
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./ProductDetail.css"
 import { useParams } from "react-router-dom"
-import { productFetchByIdThunk } from "../../redux/product";
+import { fetchProducthByIdThunk } from "../../redux/product";
 import { useModal } from "../../context/Modal";
 import ReviewTile from "../ReviewTile";
 import ReviewForm from "../ReviewForm/ReviewForm";
@@ -17,7 +17,7 @@ function ProductDetail() {
 
 
     useEffect(() => {
-        dispatch(productFetchByIdThunk(parsedProductId)).then(() => setIsLoaded(true));
+        dispatch(fetchProducthByIdThunk(parsedProductId)).then(() => setIsLoaded(true));
     }, [dispatch, parsedProductId]);
 
     const product = useSelector(state => state.products[parsedProductId]);
@@ -31,11 +31,11 @@ function ProductDetail() {
     // const averageRating = calculateAverageReview(reviews)
     return (
         <div className="product-details">
-            <h2>{product.name}</h2>
             <div className="detail-body-div">
                 <div className="left-div">
                     <div className="left-image-div">
-                        {product.product_image && <img src={product.product_image} alt={product.title} />}
+                        <h2>{product.name}</h2>
+                        {product.product_image && <img src={product.product_image} alt={product.title} className= "image-div"/>}
                         <p id="product-discription">{product.description}</p>
                     </div>
                     <div className="left-body">

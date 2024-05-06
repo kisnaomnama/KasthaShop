@@ -24,9 +24,20 @@
 #product-discription{
     font-size: 1.01rem;
 }
+
+.image-div{
+height: 300px;
+}
 .left-image-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     box-shadow: 0 0 10px rgba(22, 18, 18, 0.2);
     padding: 5px;
+}
+
+.left-image-div h2{
+    text-decoration: underline;
 }
 
 .seller-info{
@@ -35,7 +46,7 @@
 }
 
 .left-image-div img {
-    /* height: 100%; */
+    height: fit-content;
 }
 
 

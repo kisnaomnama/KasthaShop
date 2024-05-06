@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
-import { productFetchByIdThunk } from "../../redux/product";
+import { fetchProducthByIdThunk } from "../../redux/product";
 import { useDispatch, useSelector } from "react-redux";
 import EditProductForm from "../ProductForm/EditProductForm";
 
@@ -12,7 +12,7 @@ const EditProduct= () => {
     const product = useSelector(state => state.products[productId]);
 
     useEffect(()=>{
-        dispatch(productFetchByIdThunk(productId)).then(()=>setIsLoaded(true))
+        dispatch(fetchProducthByIdThunk(productId)).then(()=>setIsLoaded(true))
     }, [dispatch, productId]);
 
     return (
