@@ -1,24 +1,30 @@
 import { useState } from "react";
-import { FaStar } from 'react-icons/fa';
 
-const StarInput = ({ stars, setStars }) => {
+const StarInput = ({ stars, setRating }) => {
     const [starEffect, setStarEffect] = useState(stars);
     const starRating = [1, 2, 3, 4, 5];
+    
+    const handleStarClick = (rating) => {
+        setRating(rating);
+        setStarEffect(rating);
+    };
+
     return (
         <div className="stars-rating">
             <ul>
                 Stars
-                {starRating.map(rating => {
-                    return (<i
+                {starRating.map(rating => (
+                    <i 
                         key={`stars-rating-${rating}`}
                         className={`fa-${starEffect >= rating ? "solid" : "regular"} fa-star`}
-                        onClick={() => setStars(starEffect)}
+                        onClick={() => handleStarClick(rating)}
                         onMouseEnter={() => setStarEffect(rating)}
-                        onMouseLeave={() => setStarEffect(stars)} />)
-                })}
+                        onMouseLeave={() => setStarEffect(stars)}
+                    />
+                ))}
             </ul>
-
-        </div>)
-}
+        </div>
+    );
+};
 
 export default StarInput;

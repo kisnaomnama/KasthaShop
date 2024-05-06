@@ -6,6 +6,12 @@ from app.forms import ReviewForm
 review_routes = Blueprint('reviews', __name__)
 
 
+
+@review_routes.route('/reviews', methods=["GET"])
+def get_all_reviews():
+    reviews = Review.query.all()
+    return { "reviews": [review.to_dict() for review in reviews]}, 200
+
 @review_routes.route('/<int:id>')
 @login_required
 def review(id):
@@ -22,6 +28,9 @@ def update_review(id):
     """Update a review by id"""
     review = Review.query.get(id)
 
+    csrf_token = request.cookies.get("csrf_token", "")
+    form["csrf_token"].data = csrf_token
+
     if not review:
         return {"message": "Review couldn't be found"}, 404
 
@@ -36,9 +45,9 @@ def update_review(id):
 
         db.session.commit()
 
-        return {**review.to_dict(), "user": review.user_id.to_dict()}, 200
+        return review.to_dict(), 200
 
-    return {**form.errors, "review": review.to_dict()}, 400
+    return form.errors, 400
 
 
 

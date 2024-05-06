@@ -74,6 +74,7 @@ function ProductForm() {
         if (!description.length) errObj.description = 'Description Required'
         if (!price) errObj.price = 'Price Required'
         if (price <= 0) errObj.price = 'Price Must be greater than 0'
+        // if (typeof price !== 'number') errObj.price = 'Price Must be number';
         if (price > 10000) errObj.price = 'Price must be smaller than or equal to 10,000'
         if (!category) errObj.category = 'Category Required'
         if (!product_image) errObj.product_image = "Preview image required"

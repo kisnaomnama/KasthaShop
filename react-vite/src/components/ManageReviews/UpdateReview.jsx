@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./UpdateReview.css";
-import { updateProductReviewThunk } from "../../redux/product";
+// import { updateProductReviewThunk } from "../../redux/product";
+import { updateProductReviewThunk } from "../../redux/review";
 import { IoStarOutline, IoStar } from "react-icons/io5";
 
 

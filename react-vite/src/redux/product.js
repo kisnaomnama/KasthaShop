@@ -9,18 +9,19 @@ const DELETE_PRODUCT = 'products/DELETE_PRODUCT'
 const USER_PRODUCTS = "products/USER_PRODUCTS"
 
 const LOAD_REVIEWS_BY_PRODUCT = 'reviews/LOAD_REVIEWS_BY_PRODUCT'
-const LOAD_SINGLE_REVIEW = 'review/OAD_SINGLE_REVIEW'
-const CREATE_PRODUCT_REVIEW = 'product/CREATE_PRODUCT_REVIEW'
-const UPDATE_PRODUCT_REVIEW = 'products/UPDATE_PRODUCT_REVIEW';
-const DELETE_PRODUCT_REVIEW = 'products/DELETE_PRODUCT_REVIEW';
-const USER_REVIEWS = "reviews/USER_REVIEWS"
+const LOAD_SINGLE_REVIEW = 'review/LOAD_SINGLE_REVIEW'
+
+// const CREATE_PRODUCT_REVIEW = 'product/CREATE_PRODUCT_REVIEW'
+// const UPDATE_PRODUCT_REVIEW = 'products/UPDATE_PRODUCT_REVIEW';
+// const DELETE_PRODUCT_REVIEW = 'products/DELETE_PRODUCT_REVIEW';
+// const USER_REVIEWS = "reviews/USER_REVIEWS"
 
 
 //********************************** POJO action creator **********************//
 
 const loadProducts = (products) => ({
     type: LOAD_PRODUCTS,
-    payload: products
+    products
 });
 
 const createProduct = (product) => ({
@@ -58,25 +59,25 @@ const loadSingleReview = (review) => ({
     payload: review
 });
 
-const createProductReview = (productId, review) => ({
-    type: CREATE_PRODUCT_REVIEW,
-    payload: { productId, review }
-});
+// const createProductReview = (productId, review) => ({
+//     type: CREATE_PRODUCT_REVIEW,
+//     payload: { productId, review }
+// });
 
-const updateProductReview = (productId, review) => ({
-    type: UPDATE_PRODUCT_REVIEW,
-    payload: { productId, review }
-});
+// const updateProductReview = (productId, review) => ({
+//     type: UPDATE_PRODUCT_REVIEW,
+//     payload: { productId, review }
+// });
 
-const deleteProductReview = (productId, reviewId) => ({
-    type: DELETE_PRODUCT_REVIEW,
-    payload: { productId, reviewId }
-});
+// const deleteProductReview = (productId, reviewId) => ({
+//     type: DELETE_PRODUCT_REVIEW,
+//     payload: { productId, reviewId }
+// });
 
-const loadAllReviewsByUser = (reviews) => ({
-    type: USER_REVIEWS,
-    payload: reviews
-});
+// const loadAllReviewsByUser = (reviews) => ({
+//     type: USER_REVIEWS,
+//     payload: reviews
+// });
 
 
 //********************************** Thunk action creator ***********************//
@@ -106,7 +107,7 @@ export const createProductThunk = (product) => async (dispatch) => {
     console.log("RESPONSE >>> ", data);
 
     if (!res.ok) return { "errors": data };
-    
+
     await dispatch(createProduct(data));
     return data;
 };
@@ -203,71 +204,74 @@ export const fetchAllProductsCurrentUserThunk = () => async (dispatch) => {
 };
 
 
+// export const createProductReviewThunk = (productId, review) => async dispatch => {
+//     const res = await fetch(`/api/products/${productId}/reviews`, {
+//         method: 'POST',
+//         body: review
+//     });
+//     const data = await res.json();
+//     console.log("RESPONCE >>> ", data)
 
-export const createProductReviewThunk = (productId, review) => async dispatch => {
-    const res = await fetch(`/api/products/${productId}/reviews`, {
-        method: 'POST',
-        body: review
-    });
-    const data = await res.json();
-    console.log("RESPONCE >>> ", data)
-
-    if (!res.ok) return { "errors": data };
-    await dispatch(createProductReview(productId, data));
-    return data;
-}
-
-
-export const updateProductReviewThunk = (productId, reviewId, review) => async dispatch => {
-    const res = await fetch(`/api/reviews/${reviewId}`, {
-        method: 'PUT',
-        body: review
-    });
-
-    const data = await res.json();
-    console.log("RESPONCE >>> ", data)
-
-    if (!res.ok) return { "errors": data };
-    await dispatch(updateProductReview(productId, data));
-    return data;
-}
-
-export const deleteProductReviewThunk = (productId, reviewId) => async dispatch => {
-
-    const res = await fetch(`/api/reviews/${reviewId}`, {
-        method: 'DELETE'
-    });
-    const data = await res.json();
-    console.log("RESPONCE >>> ", data)
-
-    if (!res.ok) return { 'errors': data };
-    await dispatch(deleteProductReview(productId, reviewId));
-    return data;
-}
+//     if (!res.ok) return { "errors": data };
+//     await dispatch(createProductReview(productId, data));
+//     return data;
+// }
 
 
-export const fetchAllReviewsbyUserThunk = () => async (dispatch) => {
-    const res = await fetch('api/reviews/currentt');
+// export const updateProductReviewThunk = (productId, reviewId, review) => async dispatch => {
+//     const res = await fetch(`/api/reviews/${reviewId}`, {
+//         method: 'PUT',
+//         body: review
+//     });
 
-    if (!res.ok) {
-        const errors = await res.json();
-        return { "errors": errors };
-    }
+//     const data = await res.json();
+//     console.log("RESPONCE >>> ", data)
 
-    const { reviews } = await res.json();
-    await dispatch(loadAllReviewsByUser(reviews));
-    return reviews;
+//     if (!res.ok) return { "errors": data };
+//     await dispatch(updateProductReview(productId, data));
+//     return data;
+// }
+
+// export const deleteProductReviewThunk = (productId, reviewId) => async dispatch => {
+
+//     const res = await fetch(`/api/reviews/${reviewId}`, {
+//         method: 'DELETE'
+//     });
+//     const data = await res.json();
+//     console.log("RESPONCE >>> ", data)
+
+//     if (!res.ok) return { 'errors': data };
+//     await dispatch(deleteProductReview(productId, reviewId));
+//     return data;
+// }
+
+
+// export const fetchAllReviewsbyUserThunk = () => async (dispatch) => {
+//     const res = await fetch('api/reviews/currentt');
+
+//     if (!res.ok) {
+//         const errors = await res.json();
+//         return { "errors": errors };
+//     }
+
+//     const { reviews } = await res.json();
+//     await dispatch(loadAllReviewsByUser(reviews));
+//     return reviews;
+// };
+
+
+const initialState = {
+ 
 };
-
-
-const initialState = {};
 
 function productReducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_PRODUCTS: {
+          
             const newProductState = {};
-            action.payload.forEach(product => {
-                newProductState[product.id] = product;
+            action.products.forEach(product => {
+                newProductState[product.id] = product
+                // { ...product, reviews: state[product.id] ? state[product.id].reviews : [] };
             });
             return newProductState;
         }

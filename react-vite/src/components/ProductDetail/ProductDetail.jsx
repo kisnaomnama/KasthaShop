@@ -35,7 +35,8 @@ function ProductDetail() {
                 <div className="left-div">
                     <div className="left-image-div">
                         <h2>{product.name}</h2>
-                        {product.product_image && <img src={product.product_image} alt={product.title} className= "image-div"/>}
+                        <hr />
+                        {product.product_image && <img src={product.product_image} alt={product.title} className="image-div" />}
                         <p id="product-discription">{product.description}</p>
                     </div>
                     <div className="left-body">
@@ -57,11 +58,13 @@ function ProductDetail() {
                             </div>
                         }
                         <div className="review-div">
-                            <h3>Reviews</h3>
-
-                            {reviews?.map(review =>
-                                <ReviewTile key={review.id} review={review} />)
-                            }
+                            <h3 >Reviews</h3>
+                            {reviews?.length > 0 ? (
+                                reviews.map(review =>
+                                    <ReviewTile key={review.id} review={review} />)
+                            ) : (
+                                <p>No Reviews Yet</p>
+                            )}
                         </div>
                     </div>
                 }

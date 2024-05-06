@@ -1,18 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadProductsThunk } from "../../redux/product";
+import { fetchAllReviewsThunk } from "../../redux/review";
 import ProductTile from "../ProductTile";
 import ProductCatagory from "../ProductCatagory";
 import "./HomePage.css"
 
 
-
 function HomePage() {
     const dispatch = useDispatch();
     const productObj = useSelector(state => state.products)
+    const reviews = useSelector(state => state.reviews)
 
     useEffect(() => {
         dispatch(loadProductsThunk())
+        dispatch(fetchAllReviewsThunk())
     }, [dispatch])
 
     // if (products.length > 1) return <span>Loading....</span>
