@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ProductDetail.css"
 import { useParams } from "react-router-dom"
 import { fetchProducthByIdThunk } from "../../redux/product";
-import { useModal } from "../../context/Modal";
+// import { useModal } from "../../context/Modal";
 import ReviewTile from "../ReviewTile";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { formatDate } from "../../../utils/dateConverter";

@@ -10,7 +10,7 @@ import "./HomePage.css"
 function HomePage() {
     const dispatch = useDispatch();
     const productObj = useSelector(state => state.products)
-    const reviews = useSelector(state => state.reviews)
+    // const reviews = useSelector(state => state.reviews)
 
     useEffect(() => {
         dispatch(loadProductsThunk())

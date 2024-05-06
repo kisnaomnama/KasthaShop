@@ -1,6 +1,5 @@
 import "./ReviewTile.css";
 import { IoPersonCircleOutline, IoStarOutline, IoStar } from "react-icons/io5";
-import { useEffect } from "react";
 import { formatDate } from "../../../utils/dateConverter";
 import { useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
@@ -36,7 +35,7 @@ function ReviewTile({ review }) {
         <p>Review: {review.review}</p>
       </div>
       {userId === review.user_id && (
-        <div>
+        <div className="delete-update-button">
           <OpenModalButton
             className="manage-review-button cursor"
             buttonText="Delete"

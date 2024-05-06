@@ -1,5 +1,4 @@
 
-
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -19,7 +18,7 @@ function ReviewForm({ product }) {
     const [error, setError] = useState({});
     const [showPopup, setShowPopup] = useState(false);
     const [responceMessage, setResponceMessage] = useState('');
-    const [formSubmit, setformSubmit] = useState(false);
+    // const [formSubmit, setformSubmit] = useState(false);
     const userId = useSelector((state) => state.session.user?.id);
     const productId = product?.id;
 
@@ -74,7 +73,7 @@ function ReviewForm({ product }) {
             formData.append('review', review)
             formData.append('rating', rating)
             const response = await dispatch(createProductReviewThunk(productId, formData));
-            console.log("#####", response)
+            // console.log("#####", response)
             if (!response || response.errors) {
                 const errMsg = response.errors.message
                 setShowPopup(true);
@@ -86,14 +85,10 @@ function ReviewForm({ product }) {
                 reset();
                 closeModal();
             }
-            setformSubmit(true);
+            // setformSubmit(true);
         }
     }
 
-    // closeModal();
-
-
-    // message={userId ? newReview.errors && `${newReview.errors}` : "Please log-in first!"}
     return (
         <div>
             {showPopup && !userId && (
@@ -135,7 +130,6 @@ function ReviewForm({ product }) {
                     ))}
                 </div>
                 <div className="error-div">
-
                     {error.rating && <p className="error-message">{error.rating}</p>}
                 </div>
 

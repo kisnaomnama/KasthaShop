@@ -5,8 +5,6 @@ from app.forms import ReviewForm
 
 review_routes = Blueprint('reviews', __name__)
 
-
-
 @review_routes.route('/reviews', methods=["GET"])
 def get_all_reviews():
     reviews = Review.query.all()
@@ -22,26 +20,30 @@ def review(id):
     return review.to_dict(), 200
 
 
-@review_routes.route('/<int:id>', methods=['PUT'])
+@review_routes.route('/<int:id>/<int:productId>', methods=['PUT'])
 @login_required
-def update_review(id):
+def update_review(id, productId):
     """Update a review by id"""
     review = Review.query.get(id)
+    form = ReviewForm(obj=review) 
 
-    csrf_token = request.cookies.get("csrf_token", "")
-    form["csrf_token"].data = csrf_token
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    for key, value in form.data.items():
+            print("product Before====>", key, "= ", value)
 
-    if not review:
-        return {"message": "Review couldn't be found"}, 404
+    # if not review:
+    #     return {"message": "Review couldn't be found"}, 404
 
-    if review.user_id != current_user.id:
-        return {"message": "Unathorized User!"}, 401
+    # if review.user_id != current_user.id:
+    #     return {"message": "Unathorized User!"}, 401
 
-    form = ReviewForm(obj=review)  # Pass the existing review object to the form
+    # form = ReviewForm(obj=review)  # Pass the existing review object to the form
 
     if form.validate_on_submit():
         review.review = form.data["review"]
         review.rating = form.data["rating"]
+        review.product_id = productId
+        review.user_id= current_user.id
 
         db.session.commit()
 
@@ -50,18 +52,21 @@ def update_review(id):
     return form.errors, 400
 
 
-
 @review_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_review(id):
     """Delete a review by id"""
+    # print("id----", id)
     review = Review.query.get(id)
+    # print("review----", review)
 
+    # csrf_token = request.cookies.get("csrf_token")
+ 
     if not review:
         return {"message": "review couldn't be found"}, 404
 
-    if review.user_id != current_user.id:
-        return {"message": "Unathorized User!"}, 401
+    # if review.user_id != current_user.id:
+    #     return {"message": "Unathorized User!"}, 401
 
     db.session.delete(review)
     db.session.commit()

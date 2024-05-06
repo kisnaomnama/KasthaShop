@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import { getAllReviewsOfUser } from "../../store/review";
-import ReviewTile from "../ReviewTile";
-import "./ManageReviews.css"
+// import { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// // import { getAllReviewsOfUser } from "../../store/review";
+// import ReviewTile from "../ReviewTile";
+// import "./ManageReviews.css"
 
 function ManageReviews() {
     // const dispatch = useDispatch();
@@ -12,8 +12,10 @@ function ManageReviews() {
     // useEffect(() => {
     //     dispatch(getAllReviewsOfUser()).then(() => setIsLoaded(true));
     // }, [dispatch])
-    // return (
-    //     <div></div>
+    return (
+        <div>
+            
+        </div>
 
         // <div className="manage-review-div">
         //     <h1>Manage Reviews</h1>
@@ -23,8 +25,8 @@ function ManageReviews() {
         //         })}
         //     </div>}
 
-    //     // </div>
-    // );
+        // // </div>
+    );
 }
 
 export default ManageReviews;

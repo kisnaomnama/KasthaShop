@@ -1,13 +1,13 @@
-.stars-ratings {
-    margin-bottom: 10px;
+.rating-rating{
+margin: 0;
 }
 
 .error-message {
     color: red;
-    height: auto;
+ 
 }
-.error-div{
-height: 14px;
+.create-review-form .error-div{
+height: 25px;
 }
 
 .create-review-form {
@@ -28,4 +28,8 @@ height: 14px;
     margin-bottom: 20px;
     border: 1px solid var(--bluish);
     border-radius: 5px;
+}
+
+.submit-review{
+    margin-top: 5px;
 }

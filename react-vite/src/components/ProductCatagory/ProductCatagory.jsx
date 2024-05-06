@@ -1,11 +1,11 @@
 
 import "./ProductCatagory.css"
-import { useState } from "react";
+// import { useState } from "react";
 // import { NavLink } from "react-router-dom"
 
 
-function ProductCatagory({ uniqueCategories }) {
-    const [message, setMessage] = useState("");
+function ProductCatagory() {
+    // const [message, setMessage] = useState("");
 
     // const handle =(e) => {
     //     e.preventDefault()

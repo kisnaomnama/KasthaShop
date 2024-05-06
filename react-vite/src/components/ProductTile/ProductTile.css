@@ -74,3 +74,11 @@
 .update-link-text:hover{
   font-weight: bold;
 }
+
+.delete-update-button{
+  display: flex;
+ justify-content: space-around;
+  gap: 20px
+}
+
+

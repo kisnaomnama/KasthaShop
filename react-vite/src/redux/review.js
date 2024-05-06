@@ -92,11 +92,16 @@ export const createProductReviewThunk = (productId, review) => async dispatch =>
     return data;
 }
 
-export const updateProductReviewThunk = (review) => async dispatch => {
-    const res = await fetch(`/api/reviews/${review.id}`, {
+export const updateProductReviewThunk = (reviewId, productId, review ) => async dispatch => {
+    const res = await fetch(`/api/reviews/${reviewId}/${productId}`, {
         method: 'PUT',
         body: review
     });
+
+    // for (const [key, value] of review.entries()) {
+    //     console.log("product====>", key, "= ", value);
+    // }
+
     const data = await res.json();
     console.log("RESPONSE >>> ", data)
     if (!res.ok) return { "errors": data };
