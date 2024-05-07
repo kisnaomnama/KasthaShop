@@ -58,9 +58,9 @@ function ProfileButton() {
               <li>
                 <NavLink to= "/products/current" className="manage-links">Manage products</NavLink>
               </li>
-              {/* <li>
+              <li>
                 <NavLink to= "/reviews/current" className="manage-links">Manage Reviews</NavLink>
-              </li> */}
+              </li>
               <li>
                 <button onClick={logout}>Log Out</button>
               </li>

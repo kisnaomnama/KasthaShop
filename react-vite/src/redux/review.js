@@ -48,11 +48,12 @@ export const loadAllReviewsByUser = (reviews) => ({
 //********************************** Thunk action creator ***********************//
 
 export const fetchAllReviewsThunk = () => async (dispatch) => {
-    const res = await fetch('api/reviews/reviews');
+    const res = await fetch(`api/reviews/reviews/`);
     if (!res.ok) {
         const errors = await res.json();
         return { "errors": errors };
     }
+    console.log("RESPONSE >>> ", res);
     const { reviews } = await res.json();
     dispatch(loadAllReviews(reviews));
     return reviews;

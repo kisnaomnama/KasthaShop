@@ -16,27 +16,27 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage/>,
+        element: <HomePage />,
       },
       {
         path: "/products/:productId",
-        element: <ProductDetail/>,
+        element: <ProductDetail />,
       },
       {
         path: "/products/new",
-        element: <ProductForm/>,
+        element: <ProductForm />,
       },
       {
         path: "/products/:productId/edits",
-        element: <EditProduct/>,
+        element: <EditProduct />,
       },
       {
         path: "/products/current",
-        element: <ManageProducts/>,
+        element: <ManageProducts />,
       },
       {
         path: "/reviews/current",
-        element: <ManageReviews/>,
+        element: <ManageReviews />,
       },
       {
         path: "login",
@@ -47,7 +47,11 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignupFormPage />,
         // element: <SignupFormModal />,
-      },
+      }, 
+      {
+        path: "*",
+        element: <HomePage />,
+      }
     ],
   },
 ]);
