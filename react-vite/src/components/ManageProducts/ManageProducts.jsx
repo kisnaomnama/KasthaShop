@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadProductsThunk } from "../../redux/product";
+import { fetchAllProductsThunk } from "../../redux/product";
 import { NavLink } from "react-router-dom";
 import ProductTile from "../ProductTile";
 import "./ManageProducts.css"
@@ -14,7 +14,7 @@ function ManageProducts() {
     const userId = useSelector(state => state.session.user.id)
 
     useEffect(() => {
-        dispatch(loadProductsThunk())
+        dispatch(fetchAllProductsThunk())
     }, [dispatch])
 
     if (!productObj) return <span>Loading....</span>

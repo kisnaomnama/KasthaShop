@@ -14,7 +14,7 @@ function ManageReviews() {
 
     useEffect(() => {
         
-        const  reviews=  dispatch(fetchAllReviewsThunk()).then(() => setIsLoaded(true));
+        // const  reviews=  dispatch(fetchAllReviewsThunk()).then(() => setIsLoaded(true));
          
         // dispatch(fetchAllReviewsbyUserThunk()).then(() => setIsLoaded(true));
     }, [dispatch, userId]); 

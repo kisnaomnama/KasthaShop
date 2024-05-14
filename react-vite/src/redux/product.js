@@ -11,12 +11,6 @@ const USER_PRODUCTS = "products/USER_PRODUCTS"
 const LOAD_REVIEWS_BY_PRODUCT = 'reviews/LOAD_REVIEWS_BY_PRODUCT'
 const LOAD_SINGLE_REVIEW = 'review/LOAD_SINGLE_REVIEW'
 
-// const CREATE_PRODUCT_REVIEW = 'product/CREATE_PRODUCT_REVIEW'
-// const UPDATE_PRODUCT_REVIEW = 'products/UPDATE_PRODUCT_REVIEW';
-// const DELETE_PRODUCT_REVIEW = 'products/DELETE_PRODUCT_REVIEW';
-// const USER_REVIEWS = "reviews/USER_REVIEWS"
-
-
 //********************************** POJO action creator **********************//
 
 const loadProducts = (products) => ({
@@ -59,29 +53,9 @@ const loadSingleReview = (review) => ({
     payload: review
 });
 
-// const createProductReview = (productId, review) => ({
-//     type: CREATE_PRODUCT_REVIEW,
-//     payload: { productId, review }
-// });
-
-// const updateProductReview = (productId, review) => ({
-//     type: UPDATE_PRODUCT_REVIEW,
-//     payload: { productId, review }
-// });
-
-// const deleteProductReview = (productId, reviewId) => ({
-//     type: DELETE_PRODUCT_REVIEW,
-//     payload: { productId, reviewId }
-// });
-
-// const loadAllReviewsByUser = (reviews) => ({
-//     type: USER_REVIEWS,
-//     payload: reviews
-// });
-
 
 //********************************** Thunk action creator ***********************//
-export const loadProductsThunk = () => async (dispatch) => {
+export const fetchAllProductsThunk = () => async (dispatch) => {
     const res = await fetch('/api/products/')
 
     const data = await res.json();
@@ -90,8 +64,9 @@ export const loadProductsThunk = () => async (dispatch) => {
     if (!res.ok) return { "errors": data };
 
     const { Products } = data
+    // console.log("---NOW----", Products)
     await dispatch(loadProducts(Products))
-    return data;
+    return Products;
 };
 
 export const createProductThunk = (product) => async (dispatch) => {
@@ -204,107 +179,55 @@ export const fetchAllProductsCurrentUserThunk = () => async (dispatch) => {
 };
 
 
-// export const createProductReviewThunk = (productId, review) => async dispatch => {
-//     const res = await fetch(`/api/products/${productId}/reviews`, {
-//         method: 'POST',
-//         body: review
-//     });
-//     const data = await res.json();
-//     console.log("RESPONCE >>> ", data)
-
-//     if (!res.ok) return { "errors": data };
-//     await dispatch(createProductReview(productId, data));
-//     return data;
-// }
-
-
-// export const updateProductReviewThunk = (productId, reviewId, review) => async dispatch => {
-//     const res = await fetch(`/api/reviews/${reviewId}`, {
-//         method: 'PUT',
-//         body: review
-//     });
-
-//     const data = await res.json();
-//     console.log("RESPONCE >>> ", data)
-
-//     if (!res.ok) return { "errors": data };
-//     await dispatch(updateProductReview(productId, data));
-//     return data;
-// }
-
-// export const deleteProductReviewThunk = (productId, reviewId) => async dispatch => {
-
-//     const res = await fetch(`/api/reviews/${reviewId}`, {
-//         method: 'DELETE'
-//     });
-//     const data = await res.json();
-//     console.log("RESPONCE >>> ", data)
-
-//     if (!res.ok) return { 'errors': data };
-//     await dispatch(deleteProductReview(productId, reviewId));
-//     return data;
-// }
-
-
-// export const fetchAllReviewsbyUserThunk = () => async (dispatch) => {
-//     const res = await fetch('api/reviews/currentt');
-
-//     if (!res.ok) {
-//         const errors = await res.json();
-//         return { "errors": errors };
-//     }
-
-//     const { reviews } = await res.json();
-//     await dispatch(loadAllReviewsByUser(reviews));
-//     return reviews;
-// };
-
-
 const initialState = {
- 
+
 };
 
 function productReducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_PRODUCTS: {
-          
-            const newProductState = {};
-            action.products.forEach(product => {
-                newProductState[product.id] = product
-                // { ...product, reviews: state[product.id] ? state[product.id].reviews : [] };
-            });
-            return newProductState;
-        }
-
-        case CREATE_PRODUCT: {
-            const newProductState = { ...state };
-            newProductState[action.payload.id] = action.payload
-            return newProductState
-        }
-
-        case LOAD_SINGLE_PRODUCT: {
             return {
                 ...state,
-                [action.payload.id]: action.payload
+                products: action.products,
             }
         }
-        case EDIT_PRODUCT: {
-            return {
-                ...state,
-                [action.payload.id]: action.payload,
-            };
+        // const newProductState = {};
+        // action.products.forEach(product => {
+        //     newProductState[product.id] = product
+        //     // { ...product, reviews: state[product.id] ? state[product.id].reviews : [] };
+        // });
+        // return newProductState;
+    
+
+        case CREATE_PRODUCT: {
+        const newProductState = { ...state };
+        newProductState[action.payload.id] = action.payload
+        return newProductState
+    }
+
+        case LOAD_SINGLE_PRODUCT: {
+        return {
+            ...state,
+            [action.payload.id]: action.payload
         }
+    }
+        case EDIT_PRODUCT: {
+        return {
+            ...state,
+            [action.payload.id]: action.payload,
+        };
+    }
 
         case DELETE_PRODUCT: {
-            const newState = { ...state };
-            delete newState[action.payload];
-            return newState;
-        }
+        const newState = { ...state };
+        delete newState[action.payload];
+        return newState;
+    }
 
 
         default:
-            return state;
-    }
+    return state;
+}
 }
 
 export default productReducer;

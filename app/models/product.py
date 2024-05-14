@@ -43,4 +43,6 @@ class Product(db.Model):
             "seller": self.seller.to_dict(),
             "created_at": str(self.created_at.strftime("%Y-%m-%d %H:%M:%S")),
             "reviews": reviews
+            #!'createdAt': self.created_at.strftime('%B %-d, %Y at %-I:%M'),
+            #!'updatedAt': self.updated_at.strftime('%B %-d, %Y at %-I:%M')
         }

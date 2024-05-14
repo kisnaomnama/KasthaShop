@@ -1,102 +1,57 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadProductsThunk } from "../../redux/product";
-import { fetchAllReviewsThunk } from "../../redux/review";
-import ProductTile from "../ProductTile";
-import ProductCatagory from "../ProductCatagory";
-import "./HomePage.css"
-
+import { fetchAllProductsThunk } from "../../redux/product";
+import ProductGrids from "./ProductGrids";
+import "./HomePage.css";
 
 function HomePage() {
     const dispatch = useDispatch();
-    const productObj = useSelector(state => state.products)
-    // const reviews = useSelector(state => state.reviews)
+    const [isLoaded, setIsLoaded] = useState(false);
+    const allProducts = useSelector((state) => state.products.products);
+    const [selectedCategory, setSelectedCategory] = useState(); 
+
 
     useEffect(() => {
-        dispatch(loadProductsThunk())
-        dispatch(fetchAllReviewsThunk())
-    }, [dispatch])
+        dispatch(fetchAllProductsThunk()).then(() => setIsLoaded(true));
+    }, [dispatch]);
 
-    // if (products.length > 1) return <span>Loading....</span>
-    if (!productObj) return <span>Loading....</span>
+    useEffect(() => {
+        setSelectedCategory(allProducts)
+    }, [allProducts])
 
-    const products = Object.values(productObj)
-
-    // Extracting categories from products
-    const categoriesArray = products.map(product => product.category);
-
-    // Removing duplicate categories (optional)
+    const categoriesArray = allProducts?.map((product) => product.category);
     const uniqueCategories = Array.from(new Set(categoriesArray));
+    uniqueCategories.push("All")
 
-    // console.log("===========>", products)
+    const handleClick = (category) => {
+        if (category === "All") {
+            setSelectedCategory(allProducts)
+        }
+        else {
+            const newProducts = allProducts.filter(
+                (product) => product.category === category)
+            setSelectedCategory(newProducts);
+        }
+    };
+
+    if (!isLoaded) return <span>Loading....</span>;
     return (
         <div className="home-div-wrapper">
+            <div className="category-icons-links">
+                {uniqueCategories?.map((category, catIndex) => (
+                    <button
+                        key={catIndex}
+                        onClick={() => handleClick(category)}
+                    >
+                        {category}
+                    </button>
+                ))}
+            </div>
             <div className="homepage-div">
-                <div className="left-div">
-                    <ProductCatagory uniqueCategories={uniqueCategories} />
-                </div>
-                <div className="right-div">
-                    <div className="product-grid">
-                        {products.map((product) =>
-                            <ProductTile key={product.id} product={product} />
-                        )}
-                    </div>
-                </div>
+                <ProductGrids products={selectedCategory} />
             </div>
         </div>
     );
 }
 
 export default HomePage;
-// HomePage.js
-// import React, { useState, useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { loadProductsThunk } from "../../redux/product";
-// import ProductTile from "../ProductTile";
-// import ProductCategory from "../ProductCategory";
-// import "./HomePage.css";
-// import { NavLink } from "react-router-dom";
-
-// function HomePage() {
-//   const dispatch = useDispatch();
-//   const productObj = useSelector((state) => state.products);
-//   const [selectedCategory, setSelectedCategory] = useState(null); // State to store selected category
-
-//   useEffect(() => {
-//     dispatch(loadProductsThunk());
-//   }, [dispatch]);
-
-//   if (!productObj) return <span>Loading....</span>;
-
-//   const products = Object.values(productObj);
-
-//   const categoriesArray = products.map((product) => product.category);
-//   const uniqueCategories = Array.from(new Set(categoriesArray));
-
-//   // Filter products based on the selected category
-//   const filteredProducts = selectedCategory
-//     ? products.filter((product) => product.category === selectedCategory)
-//     : products;
-
-//   return (
-//     <div className="homepage-div">
-//       <div className="left-div">
-//         <h1>Categories</h1>
-//         <ProductCategory
-//           uniqueCategories={uniqueCategories}
-//           setSelectedCategory={setSelectedCategory} // Pass setSelectedCategory as prop
-//         />
-//       </div>
-//       <div className="right-div">
-//         <h1>Products</h1>
-//         <div className="product-grid">
-//           {filteredProducts.map((product) => (
-//             <ProductTile key={product.id} product={product} />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default HomePage;
